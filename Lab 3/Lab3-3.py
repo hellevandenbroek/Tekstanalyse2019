@@ -88,13 +88,15 @@ def Lab3_3a():
 	model_smooth.train('movie', MOVIE)
 	model_smooth.train('song', SONG)
 
+	movie_prior = model_smooth.prior("movie")
+	song_prior = model_smooth.prior("song")
 
-	print('\n---------------TASK 1.a.1---------------')
-	print("Prior probability of label 'movie':", model_smooth.prior('movie'))
-	print("Prior probability of label 'song':", model_smooth.prior('song'))
+	print('\n---------------TASK 3.a.1---------------')
+	print("Prior probability of label 'movie':", movie_prior)
+	print("Prior probability of label 'song':", song_prior)
 
 	
-	print('\n---------------TASK 1.a.2---------------')
+	print('\n---------------TASK 3.a.2---------------')
 	a = model_smooth.probability("perfect", "movie")
 	b = model_smooth.probability("storm", "movie")
 	c = model_smooth.probability("perfect", "song")
@@ -104,9 +106,21 @@ def Lab3_3a():
 	print("Probability of word 'perfect' having tag 'song': ", c)
 	print("Probability of word 'storm' having tag 'song': ", d)
 
-	print('\n---------------TASK 1.a.3---------------')
-	print("\nwith smoothing on movie:", model_smooth.probability("perfect storm", "movie"))
-	print("with smoothing on song:", model_smooth.probability("perfect storm", "song"))
+	print('\n---------------TASK 3.a.3---------------')
+	print("\n'perfect storm' with smoothing on movie:", model_smooth.probability("perfect storm", "movie"))
+	print("'perfect storm' with smoothing on song:", model_smooth.probability("perfect storm", "song"))
+
+		# YOUR CODE HERE!
+
+		# Returns the values.
+		# 1. Prior probability of labels used in training. (movie, song)
+		# 2. Probability of word under given prior label (i.e., P(word|label)) according to this NB model.
+		#         a. P(perfect|movie)
+		#         b. P(storm|movie)
+		#         c. P(perfect|song)
+		#         d. P(storm|song)
+		# 3. Probability of the title 'perfect storm' is labeled as 'movie' and 'song' with no-smooth mode and smooth mode (k=1)
+	
 
 	model_rough = MaximumLikelihood(0)
 	model_rough.train('movie', MOVIE)
@@ -124,24 +138,39 @@ def Lab3_3b():
 	model.train('S', SPAM)
 	model.train('H', HAM)
 
-	print('\n---------------TASK 1.b.1---------------')
-	print("Prior probability of label 'SPAM':", model.prior('S'))
-	print("Prior probability of label 'HAM':", model.prior('H'))
+	"""
+		YOUR CODE HERE!
+		Returns the values.
+		1. Prior probability of labels for SPAM, HAM data.
+		2. Probability of word 'secret', 'sport' under given prior label (SPAM, HAM)
+		3. Probabilities of: The word 'today is secret' is labeled as SPAM, HAM with no-smooth mode and smooth mode (k=1)
+	"""
 
-	print('\n---------------TASK 1.b.2---------------')
 
 
-	print('\n---------------TASK 1.b.3---------------')
-	print("no smoothing on S:", model.probability("today is secret", "S"))
-	print("no smoothing on H:", model.probability("today is secret", "H"))
+	print('\n---------------TASK 3.b.1---------------')
+	spam_prior = model.prior("S")
+	ham_prior = model.prior("H")
+	print("Prior probability of label 'spam':", spam_prior)
+	print("Prior probability of label 'ham':", ham_prior)
 
-	model_smooth = MaximumLikelihood(1)
-	model_smooth.train('S', SPAM)
-	model_smooth.train('H', HAM)
-	print("\nwith smoothing on S:", model_smooth.probability("today is secret", "S"))
-	print("with smoothing on H:", model_smooth.probability("today is secret", "H"))
+
+	print('\n---------------TASK 3.b.2---------------')
+	# TODO DO TO
+
+	print('\n---------------TASK 3.b.3---------------')
+	print("\n'today is secret' without smoothing on ham:", model.probability("today is secret", "H"))
+	print("'today is secret' without smoothing on spam:", model.probability("today is secret", "S"))
+
+	model_without_smoothing = MaximumLikelihood(1)
+	model_without_smoothing.train('S', SPAM)
+	model_without_smoothing.train('H', HAM)
+
+	print("\n'today is secret' with smoothing on ham:", model_without_smoothing.probability("today is secret", "H"))
+	print("'today is secret' with smoothing on spam:", model_without_smoothing.probability("today is secret", "S"))
+
+
 	
-
 if __name__ == '__main__':
 	Lab3_3a()
 	Lab3_3b()
