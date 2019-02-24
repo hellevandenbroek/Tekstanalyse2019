@@ -1,10 +1,7 @@
 import random
 import nltk
 from nltk.corpus import movie_reviews, wordnet
-from nltk.classify import apply_features
 
-
-#Does not work :'(
 def synsets(words):
     syns = set()
     for word in words:
@@ -43,7 +40,6 @@ classifier = nltk.NaiveBayesClassifier.train(train_set)
 print('\n---------------ORIGINAL---------------')
 print('Accuracy = {}'.format(nltk.classify.accuracy(classifier, test_set)))
 classifier.show_most_informative_features(5)
-
 
 
 featuresets2 = [(document_features(d)[1], c) for (d,c) in documents]
