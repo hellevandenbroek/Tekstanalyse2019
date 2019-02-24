@@ -95,17 +95,16 @@ def Lab3_3a():
 	print("Prior probability of label 'movie':", movie_prior)
 	print("Prior probability of label 'song':", song_prior)
 
-
 	
 	print('\n---------------TASK 3.a.2---------------')
 	a = model_smooth.probability("perfect", "movie")
 	b = model_smooth.probability("storm", "movie")
 	c = model_smooth.probability("perfect", "song")
 	d = model_smooth.probability("storm", "song")
-	print("\nProbability of word 'perfect' having tag 'movie'", a)
-	print("Probability of word 'storm' having tag 'movie'", b) 
-	print("Probability of word 'perfect' having tag 'song'", c)
-	print("Probability of word 'storm' having tag 'song'", d)
+	print("\nProbability of word 'perfect' having tag 'movie': ", a)
+	print("Probability of word 'storm' having tag 'movie': ", b)
+	print("Probability of word 'perfect' having tag 'song': ", c)
+	print("Probability of word 'storm' having tag 'song': ", d)
 
 	print('\n---------------TASK 3.a.3---------------')
 	print("\n'perfect storm' with smoothing on movie:", model_smooth.probability("perfect storm", "movie"))
@@ -122,11 +121,12 @@ def Lab3_3a():
 		#         d. P(storm|song)
 		# 3. Probability of the title 'perfect storm' is labeled as 'movie' and 'song' with no-smooth mode and smooth mode (k=1)
 	
+
 	model_rough = MaximumLikelihood(0)
 	model_rough.train('movie', MOVIE)
 	model_rough.train('song', SONG)
-	print("'perfect storm' with no smoothing on movie:", model_rough.probability("perfect storm", "movie"))
-	print("'perfect storm' with no smoothing on song:", model_rough.probability("perfect storm", "song"))
+	print("no smoothing on movie:", model_rough.probability("perfect storm", "movie"))
+	print("no smoothing on song:", model_rough.probability("perfect storm", "song"))
 	
 def Lab3_3b():
 	print ('\nLab3_3b')
@@ -134,7 +134,7 @@ def Lab3_3b():
 	HAM = ["play sport today", "went play sport", "secret sport event", "sport is today", "sport costs money"]
 	SPAM = ["offer is secret", "click secret link", "secret sport link"]
 
-	model = MaximumLikelihood()
+	model = MaximumLikelihood(0)
 	model.train('S', SPAM)
 	model.train('H', HAM)
 
@@ -145,6 +145,7 @@ def Lab3_3b():
 		2. Probability of word 'secret', 'sport' under given prior label (SPAM, HAM)
 		3. Probabilities of: The word 'today is secret' is labeled as SPAM, HAM with no-smooth mode and smooth mode (k=1)
 	"""
+
 
 
 	print('\n---------------TASK 3.b.1---------------')
