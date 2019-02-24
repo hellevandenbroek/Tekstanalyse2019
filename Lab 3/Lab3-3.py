@@ -36,11 +36,7 @@ class Model(object):
 
 	def classify(self, type, data):
 		return self.implementation.classify(type, data)
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> master
 class Smoothing(Model):
 	def __init__(self, k = 1):
 		Model.__init__(self)
@@ -92,13 +88,10 @@ def Lab3_3a():
 	model_smooth.train('movie', MOVIE)
 	model_smooth.train('song', SONG)
 
-	movie_prior = model_smooth.prior("movie")
-	song_prior = model_smooth.prior("song")
 
 	print('\n---------------TASK 1.a.1---------------')
-	print("Prior probability of label 'movie':", movie_prior)
-	print("Prior probability of label 'song':", song_prior)
-
+	print("Prior probability of label 'movie':", model_smooth.prior('movie'))
+	print("Prior probability of label 'song':", model_smooth.prior('song'))
 
 	
 	print('\n---------------TASK 1.a.2---------------')
@@ -106,31 +99,20 @@ def Lab3_3a():
 	b = model_smooth.probability("storm", "movie")
 	c = model_smooth.probability("perfect", "song")
 	d = model_smooth.probability("storm", "song")
-	print("\nProbability of word 'perfect' having tag 'movie'", a)
-	print("Probability of word 'storm' having tag 'movie'", b) 
-	print("Probability of word 'perfect' having tag 'song'", c)
-	print("Probability of word 'storm' having tag 'song'", d)
+	print("\nProbability of word 'perfect' having tag 'movie': ", a)
+	print("Probability of word 'storm' having tag 'movie': ", b)
+	print("Probability of word 'perfect' having tag 'song': ", c)
+	print("Probability of word 'storm' having tag 'song': ", d)
 
 	print('\n---------------TASK 1.a.3---------------')
-	print("\n'perfect storm' with smoothing on movie:", model_smooth.probability("perfect storm", "movie"))
-	print("'perfect storm' with smoothing on song:", model_smooth.probability("perfect storm", "song"))
+	print("\nwith smoothing on movie:", model_smooth.probability("perfect storm", "movie"))
+	print("with smoothing on song:", model_smooth.probability("perfect storm", "song"))
 
-		# YOUR CODE HERE!
-
-		# Returns the values.
-		# 1. Prior probability of labels used in training. (movie, song)
-		# 2. Probability of word under given prior label (i.e., P(word|label)) according to this NB model.
-		#         a. P(perfect|movie)
-		#         b. P(storm|movie)
-		#         c. P(perfect|song)
-		#         d. P(storm|song)
-		# 3. Probability of the title 'perfect storm' is labeled as 'movie' and 'song' with no-smooth mode and smooth mode (k=1)
-	
 	model_rough = MaximumLikelihood(0)
 	model_rough.train('movie', MOVIE)
 	model_rough.train('song', SONG)
-	print("'perfect storm' with no smoothing on movie:", model_rough.probability("perfect storm", "movie"))
-	print("'perfect storm' with no smoothing on song:", model_rough.probability("perfect storm", "song"))
+	print("no smoothing on movie:", model_rough.probability("perfect storm", "movie"))
+	print("no smoothing on song:", model_rough.probability("perfect storm", "song"))
 	
 def Lab3_3b():
 	print ('\nLab3_3b')
@@ -138,19 +120,26 @@ def Lab3_3b():
 	HAM = ["play sport today", "went play sport", "secret sport event", "sport is today", "sport costs money"]
 	SPAM = ["offer is secret", "click secret link", "secret sport link"]
 
-	model = MaximumLikelihood()
+	model = MaximumLikelihood(0)
 	model.train('S', SPAM)
 	model.train('H', HAM)
 
-	"""
-		YOUR CODE HERE!
+	print('\n---------------TASK 1.b.1---------------')
+	print("Prior probability of label 'SPAM':", model.prior('S'))
+	print("Prior probability of label 'HAM':", model.prior('H'))
 
-		Returns the values.
-		1. Prior probability of labels for SPAM, HAM data.
-		2. Probability of word 'secret', 'sport' under given prior label (SPAM, HAM)
-		3. Probabilities of: The word 'today is secret' is labeled as SPAM, HAM with no-smooth mode and smooth mode (k=1)
-			
-	"""
+	print('\n---------------TASK 1.b.2---------------')
+
+
+	print('\n---------------TASK 1.b.3---------------')
+	print("no smoothing on S:", model.probability("today is secret", "S"))
+	print("no smoothing on H:", model.probability("today is secret", "H"))
+
+	model_smooth = MaximumLikelihood(1)
+	model_smooth.train('S', SPAM)
+	model_smooth.train('H', HAM)
+	print("\nwith smoothing on S:", model_smooth.probability("today is secret", "S"))
+	print("with smoothing on H:", model_smooth.probability("today is secret", "H"))
 	
 
 if __name__ == '__main__':
