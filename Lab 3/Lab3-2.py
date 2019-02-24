@@ -45,11 +45,12 @@ print("\nAccuracy for gender classifier based on dev set: ", dev_accuracy)
 classifier.show_most_informative_features(10)
 
 errors = []
+
+print("DEV", devtest_names[0])
 for (name, tag) in devtest_names:
-    print(name)
-    # guess = classifier.classify(gender_features(name))
-    # if guess != tag:
-    #     errors.append((tag, guess, name))
+    guess = classifier.classify(gender_features(name))
+    if guess != tag:
+        errors.append((tag, guess, name))
 
 
 test_accuracy = nltk.classify.accuracy(classifier, test_set)
