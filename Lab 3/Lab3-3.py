@@ -8,7 +8,7 @@ class Model(object):
 		self.wordcounts['total'] = 0.0
 		self.words = defaultdict(float)
 		self.allwords = defaultdict(float)
-	
+
 	def train(self, type, examples):
 		if not type in self.counts:
 			self.counts[type] = 0.0
@@ -36,7 +36,11 @@ class Model(object):
 
 	def classify(self, type, data):
 		return self.implementation.classify(type, data)
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> master
 class Smoothing(Model):
 	def __init__(self, k = 1):
 		Model.__init__(self)
@@ -68,7 +72,7 @@ class Smoothing(Model):
 					bb *= self.probability(word, _type)
 				b += bb
 			return a/b
-			
+
 class MaximumLikelihood(Smoothing):
 	def __init__(self, k = 0):
 		Smoothing.__init__(self,k)
@@ -91,14 +95,13 @@ def Lab3_3a():
 	movie_prior = model_smooth.prior("movie")
 	song_prior = model_smooth.prior("song")
 
-	# 1
-
+	print('\n---------------TASK 1.a.1---------------')
 	print("Prior probability of label 'movie':", movie_prior)
 	print("Prior probability of label 'song':", song_prior)
 
 
 	
-	# 2
+	print('\n---------------TASK 1.a.2---------------')
 	a = model_smooth.probability("perfect", "movie")
 	b = model_smooth.probability("storm", "movie")
 	c = model_smooth.probability("perfect", "song")
@@ -108,7 +111,7 @@ def Lab3_3a():
 	print("Probability of word 'perfect' having tag 'song'", c)
 	print("Probability of word 'storm' having tag 'song'", d)
 
-	# 3
+	print('\n---------------TASK 1.a.3---------------')
 	print("\n'perfect storm' with smoothing on movie:", model_smooth.probability("perfect storm", "movie"))
 	print("'perfect storm' with smoothing on song:", model_smooth.probability("perfect storm", "song"))
 
@@ -138,7 +141,7 @@ def Lab3_3b():
 	model = MaximumLikelihood()
 	model.train('S', SPAM)
 	model.train('H', HAM)
-	
+
 	"""
 		YOUR CODE HERE!
 
@@ -149,6 +152,7 @@ def Lab3_3b():
 			
 	"""
 	
+
 if __name__ == '__main__':
 	Lab3_3a()
 	Lab3_3b()
