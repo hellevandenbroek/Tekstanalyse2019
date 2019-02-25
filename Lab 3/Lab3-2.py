@@ -9,15 +9,15 @@ labeled_names = ([(name, 'male') for name in names.words('male.txt')]
 )
 random.shuffle(labeled_names)
 
+# Extracting features from a given name
+def gender_features(name):
+    return {'suffix1': name[-1],
+            'suffix2': name[-2],
+            'length-of-name': len(name),
+            'first-letter': name[0]
+        }
 
-def gender_features(word):
-    return {'last-letter': word[-1],
-            'length-of-name': len(word),
-            'first-letter': word[0]
-            }
-
-
-# using apply_features
+# using partition all names
 train_names = labeled_names[1500:]
 devtest_names = labeled_names[500:1500]
 test_names = labeled_names[:500]
@@ -27,28 +27,16 @@ devtest_set = [(gender_features(n), gender) for (n, gender) in devtest_names]
 test_set = [(gender_features(n), gender) for (n, gender) in test_names]
 
 
-classifier = nltk.NaiveBayesClassifier.train(train_set)
+def extract_gender(classifier, name):
+    gender = classifier.classify(gender_features(name))
+    print("\nExtracting gender from name:", name, "\n Gender:", gender)
 
-# Classifier is up. Now for testing
+def print_accuracy(classifier_name ,set_name, classifier, word_set):
+    accuracy = nltk.classify.accuracy(classifier, word_set)
+    print("\nAccuracy for gender classifier ({}) based on {} set: {}".format(classifier_name, set_name, accuracy))
 
-male_name = 'Neo'
-female_name = 'Trinity'
-
-neo = classifier.classify(gender_features(male_name))
-
-trinity = classifier.classify(gender_features(female_name))
-
-print("\nExtracting gender from name:", male_name, "\n Gender:", neo)
-print("\nExtracting gender from name:", female_name, "\n Gender:", trinity)
-
-dev_accuracy = nltk.classify.accuracy(classifier, devtest_set)
-print("\nAccuracy for gender classifier based on dev set: ", dev_accuracy)
-
-
-# printing information
-classifier.show_most_informative_features(10)
-
-def find_errors(names):
+# Used for finding errors in a classifier
+def find_name_errors(classifier, names):
     errors = []
     for (name, tag) in names:
         guess = classifier.classify(gender_features(name))
@@ -56,9 +44,31 @@ def find_errors(names):
             errors.append((tag, guess, name))
     return errors
 
+def print_name_errors(errors):
+    for (tag, guess, name) in sorted(errors):
+        print('correct={:<8} guess={:<8} name={:<30}'.format(tag, guess, name))
 
-for (tag, guess, name) in sorted(find_errors(devtest_names)):
-    print('correct={:<8} guess={:<8} name={:<30}'.format(tag, guess, name))
 
-test_accuracy = nltk.classify.accuracy(classifier, test_set)
-print("Accuracy for gender classifier based on test set: ", test_accuracy)
+
+# Naive Bayes
+def start_bayes_classifier(train): # train_set
+    return nltk.NaiveBayesClassifier.train(train)
+
+# DecisionTreeClassifier
+def start_decision_tree_classifier(train):
+    return nltk.DecisionTreeClassifier.train(train)
+
+# Maximum Entropy
+def start_maxent_classifier(train):
+    return nltk.MaxentClassifier.train(train, trace=0, max_iter=30)
+
+
+# starting the three classifiers
+NVclassifier = start_bayes_classifier(train_set)
+DTClassifier = start_decision_tree_classifier(train_set)
+MEClassifier = start_maxent_classifier(train_set)
+
+# printing the accuracies
+print_accuracy("NB", "test", NVclassifier, test_set)
+print_accuracy("DT", "test", DTClassifier, test_set)
+print_accuracy("ME", "test", MEClassifier, test_set)
