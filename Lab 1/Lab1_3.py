@@ -1,6 +1,7 @@
 import tweepy
 from nltk import word_tokenize
 from nltk.corpus import stopwords
+import csv
 
 consumer_key = "Z7b3xeY5P9nMSK9W3XU1Qqkca"
 consumer_secret = "TZbRe2zyXFCAvr8LJ9M1SY4Y2WUehZiExHvh5keUKsW5jqPUi5"
@@ -16,6 +17,11 @@ tweet_mode = 'extended'
 string = api.user_timeline(screen_name=screen_name,count=count,tweet_mode=tweet_mode)
 tweets = [tweet.full_text for tweet in string]
 
+
+def save_to_file(top_tweets):
+        with open("Lab 1/tweets.csv", 'wb') as csvfile:
+                tweet_writer = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                tweet_writer.writerow(['help'] * 5 )
 
 def removeStops(tokenized_tweets):
     all_stops = set(stopwords.words("english"))
@@ -40,6 +46,9 @@ tokenized_tweets=(tokenize(tweets))
 
 #Removing stopwords:
 result_stops = removeStops(tokenized_tweets)
+
+save_to_file(result_stops[0])
+
 
 print('\n---------------TOKENIZING---------------')
 print('All tweets: {}'.format(tweets))
