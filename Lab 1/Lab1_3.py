@@ -1,6 +1,7 @@
 import tweepy
 from nltk import word_tokenize
 from nltk.corpus import stopwords
+import csv
 
 consumer_key = "Z7b3xeY5P9nMSK9W3XU1Qqkca"
 consumer_secret = "TZbRe2zyXFCAvr8LJ9M1SY4Y2WUehZiExHvh5keUKsW5jqPUi5"
@@ -32,6 +33,14 @@ without_stops = []
 for word in tokenized:
     if word.lower() not in stopwords:
         without_stops.append(word)
+
+def save_to_file(top_tweets):
+        with open("Lab 1/tweets.csv", 'wb') as csvfile:
+                tweet_writer = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                tweet_writer.writerow(['help'] * 5 )
+
+save_to_file(without_stops)
+
 
 print(without_stops)
 
