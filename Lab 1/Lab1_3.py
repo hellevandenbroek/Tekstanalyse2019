@@ -10,20 +10,24 @@ access_secret = "fpOP5KHIvQFTtCVPnDhVZqqA1hP7E7Ptn5zHO8eR02Z9B"
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
-screen_name = 'peta'
+screen_name = 'elonmusk'
 tweet_mode = 'extended'
 
 string = api.user_timeline(screen_name=screen_name,tweet_mode=tweet_mode)
 tweets = [tweet.full_text for tweet in string]
 
 
-def save_to_file(top_tweets):
-    f = open("test.txt", "ab")
-    toFile = ""
-    for tweet in top_tweets:
-        toFile += tweet
-        toFile += ", "
-    f.write(toFile.encode())
+def save_to_file(name, top_tweets):
+    try:
+        f = open("twitterCorpus.txt", "ab")
+        toFile = name + ":"
+        for tweet in top_tweets:
+            toFile += tweet
+            toFile += ","
+        f.write(toFile.encode() + '\n'.encode())
+    finally:
+        f.close()
+    
 
 
 def removeStops(tokenized_tweets):
@@ -64,7 +68,7 @@ tokenized_tweets=(tokenize(tweets))
 result_stops = removeStops(tokenized_tweets)
 hashtags = (find_hashTags(tweets))
 hashtag1 = most_common(hashtags)
-save_to_file(result_stops[0])
+save_to_file(screen_name, result_stops[0])
 
 print('\n---------------TOKENIZING---------------')
 print('All tweets: {}'.format(tweets))
