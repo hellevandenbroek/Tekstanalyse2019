@@ -10,11 +10,10 @@ access_secret = "fpOP5KHIvQFTtCVPnDhVZqqA1hP7E7Ptn5zHO8eR02Z9B"
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
-screen_name = 'twitter'
-count = 10
+screen_name = 'peta'
 tweet_mode = 'extended'
 
-string = api.user_timeline(screen_name=screen_name,count=count,tweet_mode=tweet_mode)
+string = api.user_timeline(screen_name=screen_name,tweet_mode=tweet_mode)
 tweets = [tweet.full_text for tweet in string]
 
 
@@ -41,14 +40,27 @@ def tokenize(tweets):
         tokens += word_tokenize(tweet)
     return set(tokens)
 
-#Tokenizing tweets
+def find_hashTags(tweets):
+    hashtags = []
+    for tweet in tweets:
+        tweet_list = tweet.split(' ')
+        for word in tweet_list:
+            if word.startswith('#'):
+                hashtags.append(word)
+    return hashtags
+
+def most_common(hashtags):
+    if len(hashtags) > 0:
+        return max(set(hashtags), key=hashtags.count)
+    else:
+        return 'none'
+
+
 tokenized_tweets=(tokenize(tweets))
-
-#Removing stopwords:
 result_stops = removeStops(tokenized_tweets)
-
-save_to_file(result_stops[0])
-
+hashtags = (find_hashTags(tweets))
+hashtag1 = most_common(hashtags)
+#save_to_file(result_stops[0])
 
 print('\n---------------TOKENIZING---------------')
 print('All tweets: {}'.format(tweets))
@@ -56,3 +68,6 @@ print('Tokenized tweets: {}'.format(tokenized_tweets))
 print('\n---------------STOPWORDS---------------')
 print('Stopwords removed: {}'.format(result_stops[1]))
 print('The words without stops: {}'.format(result_stops[0]))
+print('\n---------------HASHTAGS---------------')
+print('The hashtags used by this twitter-account are: {}'.format(hashtags))
+print('Most frequent hashtag used by this twitter account: {}'.format(hashtag1))
