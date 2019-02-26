@@ -18,9 +18,13 @@ tweets = [tweet.full_text for tweet in string]
 
 
 def save_to_file(top_tweets):
-        with open("Lab 1/tweets.csv", 'wb') as csvfile:
-                tweet_writer = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-                tweet_writer.writerow(['help'] * 5 )
+    f = open("test.txt", "ab")
+    toFile = ""
+    for tweet in top_tweets:
+        toFile += tweet
+        toFile += ", "
+    f.write(toFile.encode())
+
 
 def removeStops(tokenized_tweets):
     all_stops = set(stopwords.words("english"))
@@ -60,7 +64,7 @@ tokenized_tweets=(tokenize(tweets))
 result_stops = removeStops(tokenized_tweets)
 hashtags = (find_hashTags(tweets))
 hashtag1 = most_common(hashtags)
-#save_to_file(result_stops[0])
+save_to_file(result_stops[0])
 
 print('\n---------------TOKENIZING---------------')
 print('All tweets: {}'.format(tweets))
