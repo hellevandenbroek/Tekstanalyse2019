@@ -116,6 +116,7 @@ def Lab3_3a():
 		# 1. Prior probability of labels used in training. (movie, song)
 		# 2. Probability of word under given prior label (i.e., P(word|label)) according to this NB model.
 		#         a. P(perfect|movie)
+
 		#         b. P(storm|movie)
 		#         c. P(perfect|song)
 		#         d. P(storm|song)
