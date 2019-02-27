@@ -10,7 +10,7 @@ access_secret = "fpOP5KHIvQFTtCVPnDhVZqqA1hP7E7Ptn5zHO8eR02Z9B"
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
-screen_name = 'realDonaldTrump'
+screen_name = 'peta'
 tweet_mode = 'extended'
 
 string = api.user_timeline(screen_name=screen_name,tweet_mode=tweet_mode)
@@ -27,26 +27,43 @@ def save_to_file(name, top_tweets):
         f.write(toFile.encode() + '\n'.encode())
     finally:
         f.close()
-    
+
+
+def save_to_file_stopwords(name, top_tweets):
+    try:
+        f = open("twitterCorpusSW.txt", "ab")
+        toFile = name + ":"
+        for tweet in top_tweets:
+            toFile += ' '.join(tweet)
+            toFile += "-,-"
+        f.write(toFile.encode() + '\n'.encode())
+    finally:
+        f.close()
 
 
 def removeStops(tokenized_tweets):
+    # akkurat nå legges alle tweets i forskjellige bolker,
+    # sånn: [[...], [...]] TODO fjern disse kommentarene før innlevering
     all_stops = set(stopwords.words("english"))
     without_stops = []
     stops = []
-
-    for word in tokenized_tweets:
-        if word.lower() not in all_stops:
-            without_stops.append(word)
-        else:
-            stops.append(word)
+    for tweet in tokenized_tweets:
+        this_tweet = []
+        for word in tweet:
+            if word.lower() not in all_stops:
+                this_tweet.append(word)
+            else:
+                stops.append(word)
+        without_stops.append(this_tweet)
     return without_stops, stops
+
 
 def tokenize(tweets):
     tokens = []
     for tweet in tweets:
-        tokens += word_tokenize(tweet)
+        tokens += [word_tokenize(tweet)]
     return tokens
+
 
 def find_hashTags(tweets):
     hashtags = []
@@ -57,19 +74,21 @@ def find_hashTags(tweets):
                 hashtags.append(word)
     return hashtags
 
+
 def most_common(hashtags):
     if len(hashtags) > 0:
         return max(set(hashtags), key=hashtags.count)
     else:
         return 'none'
 
-tokenized_tweets=(tokenize(tweets))
+
+tokenized_tweets = (tokenize(tweets))
 result_stops = removeStops(tokenized_tweets)
 hashtags = (find_hashTags(tweets))
 hashtag1 = most_common(hashtags)
 
-print(tweets)
 save_to_file(screen_name, tweets)
+save_to_file_stopwords(screen_name, result_stops[0])
 
 print('\n---------------TOKENIZING---------------')
 print('All tweets: {}'.format(tweets))
