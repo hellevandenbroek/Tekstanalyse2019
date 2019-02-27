@@ -41,8 +41,10 @@ def count_vec_example():
     print(vectorizer.get_feature_names())
     return(X.toarray())
 
-def compare(matrix) :
-    return (euclidean_distances(matrix, matrix))
+
+def compare(matrix):
+    return euclidean_distances(matrix)
+
 
 results = readFromFile()
 tweets = results[0]
