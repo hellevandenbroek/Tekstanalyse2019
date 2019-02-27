@@ -1,6 +1,7 @@
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.feature_extraction.text import CountVectorizer
 
 def readFromFile():
@@ -40,10 +41,14 @@ def count_vec_example():
     print(vectorizer.get_feature_names())
     return(X.toarray())
 
+def compare(matrix) :
+    return (euclidean_distances(matrix, matrix))
 
 results = readFromFile()
 tweets = results[0]
 names = results[1]
+vectorized = count_vectorizer(tweets)
+compared = compare(vectorized)
 
 print('\n---------------TWEETS---------------')
 print("tweets:", tweets)
@@ -52,9 +57,8 @@ print('\n---------------CORPORA---------------')
 print(names[0], ': ', tweets[0])
 print(names[1], ': ', tweets[1])
 
-print('\n---------------VECTORS1---------------')
-# print(count_vectorizer(tweets))
-print('\n---------------VECTORS2---------------')
-print(count_vectorizer(tweets))
+print('\n---------------VECTORS---------------')
+print(vectorized)
 
-#print(count_vec_example())
+print('\n---------------COMPARED---------------')
+print(compared)
