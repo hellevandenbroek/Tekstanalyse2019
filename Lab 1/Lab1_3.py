@@ -46,7 +46,7 @@ def tokenize(tweets):
     tokens = []
     for tweet in tweets:
         tokens += word_tokenize(tweet)
-    return set(tokens)
+    return tokens
 
 def find_hashTags(tweets):
     hashtags = []
@@ -62,7 +62,6 @@ def most_common(hashtags):
         return max(set(hashtags), key=hashtags.count)
     else:
         return 'none'
-
 
 tokenized_tweets=(tokenize(tweets))
 result_stops = removeStops(tokenized_tweets)
