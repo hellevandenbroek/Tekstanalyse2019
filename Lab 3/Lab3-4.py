@@ -19,38 +19,30 @@ def readFromFile():
     return tweets, names
 
 
-def count_vectorizer(corpus):
-    list_tweets = []
-    for tweet in corpus:
-        list_tweets.append(' '.join(tweet))
+def count_vectorizer(corpus, comparing):
+    list_tweets = [tweet for tweet in corpus]
+    list_tweets.append(comparing)
+    print(list_tweets)
+    #for tweet in corpus:
+        #list_tweets.append(' '.join(tweet))
     vectorizer = CountVectorizer()
     X = vectorizer.fit_transform(list_tweets)
-    print(vectorizer.get_feature_names())
-    return(X.toarray())
+    return X.toarray()
 
-
-def count_vec_example():
-    corpus = [
-        'This is the first document.',
-         'This is the second second document.',
-         'And the third one.',
-         'Is this the first document?'
-    ]
+def compare_tweet_corpus(tweet, matrix):
     vectorizer = CountVectorizer()
-    X = vectorizer.fit_transform(corpus)
-    print(vectorizer.get_feature_names())
-    return(X.toarray())
-
+    Y = vectorizer.fit_transform([tweet])
+    print(euclidean_distances(tweet, matrix))
 
 def compare(matrix):
+    print(matrix)
     return euclidean_distances(matrix)
 
 
+input_tweet = "this is a great wall and the animals are doing perfectly fine reportingly good!"
 results = readFromFile()
 tweets = results[0]
 names = results[1]
-vectorized = count_vectorizer(tweets)
-compared = compare(vectorized)
 
 print('\n---------------TWEETS---------------')
 print("tweets:", tweets)
@@ -60,7 +52,18 @@ print(names[0], ': ', tweets[0])
 print(names[1], ': ', tweets[1])
 
 print('\n---------------VECTORS---------------')
+vectorized = count_vectorizer(tweets[0], input_tweet)
+vectorized2 = count_vectorizer(tweets[1], input_tweet)
+
+compared = compare(vectorized)
+compared2 = compare(vectorized2)
 print(vectorized)
+print(vectorized2)
 
 print('\n---------------COMPARED---------------')
+
 print(compared)
+
+
+print('******************************')
+print('Tweet: ', input_tweet)
