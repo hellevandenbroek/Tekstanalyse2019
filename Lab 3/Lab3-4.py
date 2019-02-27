@@ -3,7 +3,6 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 
-
 def readFromFile():
     f = open("twitterCorpus.txt", "r", encoding="utf-8")
     tweets = []
@@ -48,7 +47,7 @@ print('\n---------------TWEETS---------------')
 print("tweets:", tweets)
 
 print('\n---------------CORPORA---------------')
-print(names[5], ': ', tweets[5])
+print(names[0], ': ', tweets[0])
 print(names[1], ': ', tweets[1])
 
 print('\n---------------VECTORS1---------------')
@@ -56,6 +55,6 @@ print('\n---------------VECTORS1---------------')
 print('\n---------------VECTORS2---------------')
 # print(count_vectorizer(tweets))
 
-# vectorize(tweets)
+print(tweets)
 
-print(count_vec_example())
+#print(count_vec_example())

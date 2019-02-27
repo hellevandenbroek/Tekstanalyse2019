@@ -10,7 +10,7 @@ access_secret = "fpOP5KHIvQFTtCVPnDhVZqqA1hP7E7Ptn5zHO8eR02Z9B"
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
-screen_name = 'erna_solberg'
+screen_name = 'realDonaldTrump'
 tweet_mode = 'extended'
 
 string = api.user_timeline(screen_name=screen_name,tweet_mode=tweet_mode)
@@ -23,7 +23,7 @@ def save_to_file(name, top_tweets):
         toFile = name + ":"
         for tweet in top_tweets:
             toFile += tweet
-            toFile += ","
+            toFile += "-,-"
         f.write(toFile.encode() + '\n'.encode())
     finally:
         f.close()
@@ -67,7 +67,9 @@ tokenized_tweets=(tokenize(tweets))
 result_stops = removeStops(tokenized_tweets)
 hashtags = (find_hashTags(tweets))
 hashtag1 = most_common(hashtags)
-save_to_file(screen_name, result_stops[0])
+
+print(tweets)
+save_to_file(screen_name, tweets)
 
 print('\n---------------TOKENIZING---------------')
 print('All tweets: {}'.format(tweets))
