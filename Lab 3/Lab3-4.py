@@ -10,7 +10,6 @@ def readFromFile():
     names = []
     for line in f.readlines():
         tweeter = line
-
         colon = tweeter.index(":")
         name = tweeter[0:colon]
         names.append(name)
@@ -19,33 +18,31 @@ def readFromFile():
     return tweets, names
 
 
-def count_vectorizer(corpus, comparing):
-    list_tweets = [tweet for tweet in corpus]
-    list_tweets.append(comparing)
-    print(list_tweets)
-    #for tweet in corpus:
-        #list_tweets.append(' '.join(tweet))
+def count_vectorizer(account, comp_tweet):
+    list_tweets = [tweet for tweet in account]
+    list_tweets.append(comp_tweet)
     vectorizer = CountVectorizer()
     X = vectorizer.fit_transform(list_tweets)
     return X.toarray()
 
-def compare_tweet_corpus(tweet, matrix):
-    vectorizer = CountVectorizer()
-    Y = vectorizer.fit_transform([tweet])
-    print(euclidean_distances(tweet, matrix))
-
 def compare(matrix):
-    print(matrix)
-    return euclidean_distances(matrix)
+    # TODO calculate similarity
+    # euc_dist is in the nevner
+    #return euclidean_distances(matrix)
 
 
-input_tweet = "this is a great wall and the animals are doing perfectly fine reportingly good!"
+    # sum av alle vektorer / distansen
+    return 'hello '
+
+
+input_tweet = "this is a great wall and the animals are doing perfectly fine reportingly vegan peta vegetarian good!"
 results = readFromFile()
 tweets = results[0]
 names = results[1]
 
 print('\n---------------TWEETS---------------')
 print("tweets:", tweets)
+print('Input tweet: ', input_tweet)
 
 print('\n---------------CORPORA---------------')
 print(names[0], ': ', tweets[0])
@@ -54,16 +51,15 @@ print(names[1], ': ', tweets[1])
 print('\n---------------VECTORS---------------')
 vectorized = count_vectorizer(tweets[0], input_tweet)
 vectorized2 = count_vectorizer(tweets[1], input_tweet)
-
-compared = compare(vectorized)
-compared2 = compare(vectorized2)
 print(vectorized)
 print(vectorized2)
 
+
 print('\n---------------COMPARED---------------')
+compared = compare(vectorized)
+compared2 = compare(vectorized2)
+print(compared2)
 
-print(compared)
-
-
-print('******************************')
-print('Tweet: ', input_tweet)
+print('\n---------------CREDITS---------------')
+print("Helle van den Broek - Author")
+print("Truls Andreas Berglund - Author")
