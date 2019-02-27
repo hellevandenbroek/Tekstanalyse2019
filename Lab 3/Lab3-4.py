@@ -9,10 +9,12 @@ def readFromFile():
     names = []
     for line in f.readlines():
         tweeter = line
-        name = tweeter[0:tweeter.index(":")]
+
+        colon = tweeter.index(":")
+        name = tweeter[0:colon]
         names.append(name)
-        tweeter = line.split(',')
-        tweets.append(tweeter[tweeter.index(":") + 1:])
+        tweeter = line.split('-,-')
+        tweets.append(tweeter[colon + 1:])
     return tweets, names
 
 
@@ -53,8 +55,6 @@ print(names[1], ': ', tweets[1])
 print('\n---------------VECTORS1---------------')
 # print(count_vectorizer(tweets))
 print('\n---------------VECTORS2---------------')
-# print(count_vectorizer(tweets))
-
-print(tweets)
+print(count_vectorizer(tweets))
 
 #print(count_vec_example())
