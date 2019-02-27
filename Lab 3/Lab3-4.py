@@ -17,6 +17,7 @@ def readFromFile():
     return tweets, names
 
 def count_vectorizer(corpus):
+    print(corpus)
     vectorizer = CountVectorizer()
     X = vectorizer.fit_transform(corpus)
     return(X.toarray())
@@ -26,11 +27,11 @@ tweets = results[0]
 names = results[1]
 
 print('\n---------------CORPUSES---------------')
-print(names[0], ': ', tweets[0])
+print(names[5], ': ', tweets[5])
 print(names[1], ': ', tweets[1])
 
 print('\n---------------VECTORS1---------------')
-print(count_vectorizer(tweets[0]))
+print(count_vectorizer(tweets[5]))
 print('\n---------------VECTORS2---------------')
 print(count_vectorizer(tweets[1]))
 
