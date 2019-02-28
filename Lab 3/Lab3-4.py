@@ -44,23 +44,20 @@ def dist(matrix):
 
 
 def compute_similarity(account, new_tweet):
-    # TODO calculate similarity
-    matrix = [account, new_tweet]
     mean_value = 0
+    sum_new = sum(new_tweet)
+
     for line in account:
         vec_sum = sum(line)
         dist_euc = dist([line, new_tweet])[1][0]
-        print(dist_euc)
-        # print(vec_sum)
-        mean_value += (sum(line)*sum(new_tweet)/
-                       dist_euc+1)
+        print("dist:", dist_euc)
+        sim = (vec_sum + sum_new/
+                       dist_euc)
+        print("similarity:", sim)
+        mean_value += sim
     mean_value /= len(account)
     print("mean value:", mean_value)
-    vecs = [sum(account), sum(new_tweet)]
-    comp = dist(matrix)
-    print("vecs", vecs)
-    print("comp", comp[0][1])
-
+    return mean_value
 
 
 input_tweet = "this is a great wall and the animals are doing perfectly fine reportingly vegan peta vegetarian good! We need the wall"
