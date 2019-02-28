@@ -62,9 +62,9 @@ def compare(first_acc, first_name, second_acc, second_name, input_tweet1):
         belongs_to = second_name
         not_to = first_name
 
-    print("The input tweet: '{}' seems to belong to {} rather than to {}".format(shortened_input, belongs_to, not_to))
     print("similarity, {}:".format(first_name), sim1)
     print("similarity, {}:".format(second_name), sim2)
+    print("The input tweet: '{}' seems to belong to {} rather than to {}".format(shortened_input, belongs_to, not_to))
 
 
 input_tweet = "The great wall of China needs to be built quickly. We can no longer suffer the animals by not having the great wall of USA"
