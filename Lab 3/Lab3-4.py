@@ -19,33 +19,51 @@ def readFromFile():
     return tweets, names
 
 
+# own_texts = ['This is my text. I own the text.',
+#              'Someone stole my text.',
+#              'Hey, stop that!',
+#              'Fine, I give up..',
+#              'And now for the credits']
+
+
 def count_vectorizer(account, comp_tweet):
-    print("account", account)
+    # Adding the account tweets to the list first,
+    # then adding the input tweet last [-1]
     list_tweets = [tweet for tweet in account]
     list_tweets.append(comp_tweet)
+
     vectorizer = CountVectorizer()
     X = vectorizer.fit_transform(list_tweets)
-    print(vectorizer.get_feature_names())
+    # print("gtf:", vectorizer.get_feature_names())
     return X.toarray()
 
 
-def compare(matrix):
-    # TODO calculate similarity
-    # euc_dist is in the nevner
-    return euclidean_distances(matrix)
-    # sum av alle vektorer / distansen
+def dist(matrix):
+    euc = euclidean_distances(matrix)
+    return euc
 
 
 def compute_similarity(account, new_tweet):
+    # TODO calculate similarity
     matrix = [account, new_tweet]
+    mean_value = 0
+    for line in account:
+        vec_sum = sum(line)
+        dist_euc = dist([line, new_tweet])[1][0]
+        print(dist_euc)
+        # print(vec_sum)
+        mean_value += (sum(line)*sum(new_tweet)/
+                       dist_euc+1)
+    mean_value /= len(account)
+    print("mean value:", mean_value)
     vecs = [sum(account), sum(new_tweet)]
-    comp = compare(matrix)
+    comp = dist(matrix)
     print("vecs", vecs)
     print("comp", comp[0][1])
-    return "lol"
 
 
-input_tweet = "this is a great wall and the animals are doing perfectly fine reportingly vegan peta vegetarian good!"
+
+input_tweet = "this is a great wall and the animals are doing perfectly fine reportingly vegan peta vegetarian good! We need the wall"
 results = readFromFile()
 tweets = results[0]
 names = results[1]
@@ -60,18 +78,23 @@ print(names[1], ': ', tweets[1])
 
 print('\n---------------VECTORS---------------')
 vectorized = count_vectorizer(tweets[0], input_tweet)
+print(vectorized)
+
+sum_vect = [sum(vec) for vec in vectorized]
+print("sum:", sum_vect)
 
 # sim = compute_similarity(vectorized[0], vectorized[1])
 
 
 # vectorized2 = count_vectorizer(tweets[1], input_tweet)
-print(vectorized)
 
 
 print('\n---------------COMPARED---------------')
-compared = compare(vectorized)
+compared = [sum(line) for line in dist(vectorized)]
 # compared2 = compare(vectorized2)
 
+
+compute_similarity(vectorized[:len(vectorized) - 1], vectorized[-1])
 
 print('\n---------------CREDITS---------------')
 print("Helle van den Broek - Author")
