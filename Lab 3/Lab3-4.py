@@ -45,22 +45,22 @@ def dist(matrix):
 
 def compute_similarity(account, new_tweet):
     mean_value = 0
-    sum_new = sum(new_tweet)
 
-    for line in account:
-        vec_sum = sum(line)
+    for x in range(len(account)):
+        line = account[x]
         dist_euc = dist([line, new_tweet])[1][0]
-        print("dist:", dist_euc)
-        sim = (vec_sum + sum_new/
-                       dist_euc)
-        print("similarity:", sim)
+        calc_sum = 0
+
+        for y in range(len(line)):
+            calc_sum += line[y] * new_tweet[y]
+
+        sim = (calc_sum/ dist_euc)
         mean_value += sim
     mean_value /= len(account)
-    print("mean value:", mean_value)
     return mean_value
 
 
-input_tweet = "this is a great wall and the animals are doing perfectly fine reportingly vegan peta vegetarian good! We need the wall"
+input_tweet = "great fish animals perfectly animal vegan peta vegetarian good! Need dog lobster"
 results = readFromFile()
 tweets = results[0]
 names = results[1]
@@ -83,7 +83,7 @@ print("sum:", sum_vect)
 # sim = compute_similarity(vectorized[0], vectorized[1])
 
 
-# vectorized2 = count_vectorizer(tweets[1], input_tweet)
+vectorized2 = count_vectorizer(tweets[1], input_tweet)
 
 
 print('\n---------------COMPARED---------------')
@@ -91,7 +91,11 @@ compared = [sum(line) for line in dist(vectorized)]
 # compared2 = compare(vectorized2)
 
 
-compute_similarity(vectorized[:len(vectorized) - 1], vectorized[-1])
+print("mean value trump:", compute_similarity(vectorized[:len(vectorized) - 1], vectorized[-1]))
+print("mean value peta", compute_similarity(vectorized2[:len(vectorized2) - 1], vectorized2[-1]))
+print(vectorized[-1])
+
+
 
 print('\n---------------CREDITS---------------')
 print("Helle van den Broek - Author")
