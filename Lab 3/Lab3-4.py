@@ -1,6 +1,8 @@
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import euclidean_distances
-from sklearn.metrics.pairwise import euclidean_distances
-
+from sklearn.feature_extraction.text import CountVectorizer
 
 def readFromFile():
     # trying without SW
@@ -49,7 +51,23 @@ def compute_similarity(account, new_tweet):
     return mean_value
 
 
-input_tweet = "great fish cruel fighting right good animals perfectly animal vegan peta vegetarian good! Need dog lobster"
+def compare(first_acc, first_name, second_acc, second_name, input_tweet1):
+    belongs_to = first_name
+    not_to = second_name
+    sim1 = compute_similarity(first_acc[:len(first_acc) - 1], first_acc[-1])
+    sim2 = compute_similarity(second_acc[:len(second_acc) - 1], second_acc[-1])
+    shortened_input = input_tweet1[:len(input_tweet1) // 2] + "..."
+
+    if sim2 > sim1:
+        belongs_to = second_name
+        not_to = first_name
+
+    print("The input tweet: '{}' seems to belong to {} rather than to {}".format(shortened_input, belongs_to, not_to))
+    print("similarity, {}:".format(first_name), sim1)
+    print("similarity, {}:".format(second_name), sim2)
+
+
+input_tweet = "The great wall of China needs to be built quickly. We can no longer suffer the animals by not having the great wall of USA"
 results = readFromFile()
 tweets = results[0]
 names = results[1]
@@ -62,18 +80,13 @@ print('\n---------------CORPORA---------------')
 print(names[0], ': ', tweets[0])
 print(names[1], ': ', tweets[1])
 
-print('\n---------------VECTORS---------------')
+# ---------------VECTORS---------------'
 first_account = count_vectorizer(tweets[0], input_tweet)
-print(first_account)
-
-
 second_account = count_vectorizer(tweets[1], input_tweet)
 
 
 print('\n---------------COMPARED---------------')
-print("similarity, Trump:", compute_similarity(first_account[:len(first_account) - 1], first_account[-1]))
-print("similarity, PETA:", compute_similarity(second_account[:len(second_account) - 1], second_account[-1]))
-
+compare(first_account, names[0], second_account, names[1], input_tweet)
 
 print('\n~~~~~~~~~~~~~~~CREDITS~~~~~~~~~~~~~~~')
 print("Helle van den Broek - Author")
