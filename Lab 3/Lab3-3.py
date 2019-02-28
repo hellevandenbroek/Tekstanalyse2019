@@ -163,12 +163,12 @@ def Lab3_3b():
 	print("\n'today is secret' without smoothing on ham:", model.probability("today is secret", "H"))
 	print("'today is secret' without smoothing on spam:", model.probability("today is secret", "S"))
 
-	model_without_smoothing = MaximumLikelihood(1)
-	model_without_smoothing.train('S', SPAM)
-	model_without_smoothing.train('H', HAM)
+	model_with_smoothing = MaximumLikelihood(1)
+	model_with_smoothing.train('S', SPAM)
+	model_with_smoothing.train('H', HAM)
 
-	print("\n'today is secret' with smoothing on ham:", model_without_smoothing.probability("today is secret", "H"))
-	print("'today is secret' with smoothing on spam:", model_without_smoothing.probability("today is secret", "S"))
+	print("\n'today is secret' with smoothing on ham:", model_with_smoothing.probability("today is secret", "H"))
+	print("'today is secret' with smoothing on spam:", model_with_smoothing.probability("today is secret", "S"))
 
 
 	

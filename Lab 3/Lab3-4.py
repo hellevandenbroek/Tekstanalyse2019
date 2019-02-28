@@ -53,14 +53,13 @@ def compute_similarity(account, new_tweet):
 
         for y in range(len(line)):
             calc_sum += line[y] * new_tweet[y]
-
-        sim = (calc_sum/ dist_euc)
+        sim = (calc_sum / dist_euc)
         mean_value += sim
     mean_value /= len(account)
     return mean_value
 
 
-input_tweet = "great fish animals perfectly animal vegan peta vegetarian good! Need dog lobster"
+input_tweet = "great fish cruel fighting right good animals perfectly animal vegan peta vegetarian good! Need dog lobster"
 results = readFromFile()
 tweets = results[0]
 names = results[1]
@@ -87,14 +86,10 @@ vectorized2 = count_vectorizer(tweets[1], input_tweet)
 
 
 print('\n---------------COMPARED---------------')
-compared = [sum(line) for line in dist(vectorized)]
-# compared2 = compare(vectorized2)
 
 
 print("mean value trump:", compute_similarity(vectorized[:len(vectorized) - 1], vectorized[-1]))
 print("mean value peta", compute_similarity(vectorized2[:len(vectorized2) - 1], vectorized2[-1]))
-print(vectorized[-1])
-
 
 
 print('\n---------------CREDITS---------------')
