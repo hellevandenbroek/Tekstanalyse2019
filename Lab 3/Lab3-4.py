@@ -19,13 +19,6 @@ def readFromFile():
     return tweets, names
 
 
-# own_texts = ['This is my text. I own the text.',
-#              'Someone stole my text.',
-#              'Hey, stop that!',
-#              'Fine, I give up..',
-#              'And now for the credits']
-
-
 def count_vectorizer(account, comp_tweet):
     # Adding the account tweets to the list first,
     # then adding the input tweet last [-1]
@@ -34,7 +27,6 @@ def count_vectorizer(account, comp_tweet):
 
     vectorizer = CountVectorizer()
     X = vectorizer.fit_transform(list_tweets)
-    # print("gtf:", vectorizer.get_feature_names())
     return X.toarray()
 
 
@@ -73,25 +65,19 @@ print(names[0], ': ', tweets[0])
 print(names[1], ': ', tweets[1])
 
 print('\n---------------VECTORS---------------')
-vectorized = count_vectorizer(tweets[0], input_tweet)
-print(vectorized)
-
-sum_vect = [sum(vec) for vec in vectorized]
-print("sum:", sum_vect)
-
-# sim = compute_similarity(vectorized[0], vectorized[1])
+first_account = count_vectorizer(tweets[0], input_tweet)
+print(first_account)
 
 
-vectorized2 = count_vectorizer(tweets[1], input_tweet)
+second_account = count_vectorizer(tweets[1], input_tweet)
 
 
 print('\n---------------COMPARED---------------')
+print("similarity, Trump:", compute_similarity(first_account[:len(first_account) - 1], first_account[-1]))
+print("similarity, PETA:", compute_similarity(second_account[:len(second_account) - 1], second_account[-1]))
 
 
-print("mean value trump:", compute_similarity(vectorized[:len(vectorized) - 1], vectorized[-1]))
-print("mean value peta", compute_similarity(vectorized2[:len(vectorized2) - 1], vectorized2[-1]))
-
-
-print('\n---------------CREDITS---------------')
+print('\n~~~~~~~~~~~~~~~CREDITS~~~~~~~~~~~~~~~')
 print("Helle van den Broek - Author")
 print("Truls Andreas Berglund - Author")
+print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')

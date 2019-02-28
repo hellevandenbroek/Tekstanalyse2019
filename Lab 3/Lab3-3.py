@@ -171,7 +171,6 @@ def Lab3_3b():
 	print("'today is secret' with smoothing on spam:", model_with_smoothing.probability("today is secret", "S"))
 
 
-	
 if __name__ == '__main__':
 	Lab3_3a()
 	Lab3_3b()
