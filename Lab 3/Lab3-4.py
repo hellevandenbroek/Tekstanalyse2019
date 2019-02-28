@@ -5,7 +5,8 @@ from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.feature_extraction.text import CountVectorizer
 
 def readFromFile():
-    f = open("twitterCorpus.txt", "r", encoding="utf-8")
+    # trying without SW
+    f = open("twitterCorpusSW.txt", "r", encoding="utf-8")
     tweets = []
     names = []
     for line in f.readlines():
@@ -24,6 +25,7 @@ def count_vectorizer(account, comp_tweet):
     list_tweets.append(comp_tweet)
     vectorizer = CountVectorizer()
     X = vectorizer.fit_transform(list_tweets)
+    print(vectorizer.get_feature_names())
     return X.toarray()
 
 
@@ -41,21 +43,6 @@ def compute_similarity(account, new_tweet):
     print("vecs", vecs)
     print("comp", comp[0][1])
     return "lol"
-
-
-def remove_stops(tokenized_tweets):
-    all_stops = set(stopwords.words("english"))
-    without_stops = []
-    stops = []
-
-    for word in tokenized_tweets:
-        if word.lower() not in all_stops:
-            without_stops.append(word)
-        else:
-            stops.append(word)
-    return without_stops, stops
-
-
 
 
 input_tweet = "this is a great wall and the animals are doing perfectly fine reportingly vegan peta vegetarian good!"

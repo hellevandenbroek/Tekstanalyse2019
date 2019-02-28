@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0016eb18-b10a-470e-a3e8-4ae3803d90c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Tekstanalyse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Tekstanalyse.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab 1/Lab1_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 1/Lab1_3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab 1/twitterCorpus.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 1/twitterCorpus.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab 1/twitterCorpusSW.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 1/twitterCorpusSW.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab 3/Lab3-4.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 3/Lab3-4.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,9 +16,9 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Tekstanalyse$Lab3_2.coverage" NAME="Lab3-2 Coverage Results" MODIFIED="1551015465273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 3" />
     <SUITE FILE_PATH="coverage/Tekstanalyse$Lab3_4.coverage" NAME="Lab3-4 Coverage Results" MODIFIED="1551200198434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 3" />
-    <SUITE FILE_PATH="coverage/lab$Lab3_4.coverage" NAME="Lab3-4 Coverage Results" MODIFIED="1551297222249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 3" />
+    <SUITE FILE_PATH="coverage/lab$Lab3_4.coverage" NAME="Lab3-4 Coverage Results" MODIFIED="1551336963515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 3" />
     <SUITE FILE_PATH="coverage/Tekstanalyse$Lab3_3.coverage" NAME="Lab3-3 Coverage Results" MODIFIED="1551019156995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 3" />
-    <SUITE FILE_PATH="coverage/lab$Lab1_3.coverage" NAME="Lab1_3 Coverage Results" MODIFIED="1551301310003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 1" />
+    <SUITE FILE_PATH="coverage/lab$Lab1_3.coverage" NAME="Lab1_3 Coverage Results" MODIFIED="1551335904232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 1" />
     <SUITE FILE_PATH="coverage/Tekstanalyse$Lab3_1.coverage" NAME="Lab3-1 Coverage Results" MODIFIED="1551014883147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 3" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -30,23 +28,23 @@
     <session id="-517929883">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1128" />
+          <entry key="py" value="1179" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1128" />
+          <entry key="Python" value="1179" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="py" value="3" />
-          <entry key="txt" value="1" />
+          <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="3" />
         </counts>
       </usages-collector>
@@ -58,97 +56,31 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2703">
-              <caret line="159" column="16" selection-start-line="159" selection-start-column="16" selection-end-line="159" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab 1/Lab1_1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+            <state relative-caret-position="152">
+              <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-                <marker date="1551297475485" expanded="true" signature="1074:1570" ph="..." />
+                <marker date="1551336929713" expanded="true" signature="1142:1319" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab 1/Lab1_3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab 1/twitterCorpusSW.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="337" selection-start-line="2" selection-start-column="323" selection-end-line="2" selection-end-column="337" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab 1/.idea/Lab1.iml">
+        <entry file="file://$PROJECT_DIR$/Lab 3/twitterCorpusSW.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab 1/twitterCorpus.txt">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Lab 1/Lab1_3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="3297" selection-start-line="1" selection-start-column="3297" selection-end-line="1" selection-end-column="3297" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab 3/twitterCorpus.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="221">
+              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,8 +107,9 @@
         <option value="$PROJECT_DIR$/Lab 3/Lab3-3.py" />
         <option value="$PROJECT_DIR$/Lab 1/twitterCorpus.txt" />
         <option value="$PROJECT_DIR$/Lab 3/twitterCorpus.txt" />
-        <option value="$PROJECT_DIR$/Lab 3/Lab3-4.py" />
+        <option value="$PROJECT_DIR$/Lab 1/twitterCorpusSW.txt" />
         <option value="$PROJECT_DIR$/Lab 1/Lab1_3.py" />
+        <option value="$PROJECT_DIR$/Lab 3/Lab3-4.py" />
       </list>
     </option>
   </component>
@@ -230,12 +163,13 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\GitHub\Tekstanalyse\Lab 3" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\GitHub\Tekstanalyse\Lab 1" />
       <recent name="C:\Users\fridt\Github\Tekstanalyse\Lab 3" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\truls\Documents\NTNU\TDT4310\lab\Lab 3" />
+      <recent name="C:\GitHub\Tekstanalyse\Lab 3" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -250,7 +184,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Lab1_3">
+  <component name="RunManager" selected="Python.Lab3-4">
     <configuration default="true" type="ccruntests" factoryName="Run Study Tests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -424,8 +358,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Lab1_3" />
         <item itemvalue="Python.Lab3-4" />
+        <item itemvalue="Python.Lab1_3" />
         <item itemvalue="Python.Lab3-3" />
         <item itemvalue="Python.Lab3-2" />
         <item itemvalue="Python.Lab1_5" />
@@ -469,7 +403,7 @@
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" x="22" y="210" width="1512" height="548" id="Run" order="2" visible="true" weight="0.41218132" />
+      <window_info active="true" anchor="bottom" x="22" y="210" width="1512" height="548" id="Run" order="2" visible="true" weight="0.45609066" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -535,24 +469,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lab 1/Lab1_1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2703">
-          <caret line="159" column="16" selection-start-line="159" selection-start-column="16" selection-end-line="159" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -566,38 +486,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lab 1/Lab1_3.py">
+    <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+        <state relative-caret-position="-293">
+          <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lab 1/twitterCorpusSW.txt">
+    <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="337" selection-start-line="2" selection-start-column="323" selection-end-line="2" selection-end-column="337" />
+        <state relative-caret-position="87">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2703">
+          <caret line="159" column="16" selection-start-line="159" selection-start-column="16" selection-end-line="159" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab 1/twitterCorpusSW.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab 3/twitterCorpusSW.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        <state relative-caret-position="152">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
-            <marker date="1551297475485" expanded="true" signature="1074:1570" ph="..." />
+            <marker date="1551336929713" expanded="true" signature="1142:1319" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lab 3/Lab3-1.py">
+    <entry file="file://$PROJECT_DIR$/Lab 1/Lab1_3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+        <state relative-caret-position="221">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
