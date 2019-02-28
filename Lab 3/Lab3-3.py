@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 class Model(object):
 	def __init__(self):
 		self.counts = defaultdict(float)
@@ -95,7 +96,6 @@ def Lab3_3a():
 	print("Prior probability of label 'movie':", movie_prior)
 	print("Prior probability of label 'song':", song_prior)
 
-	
 	print('\n---------------TASK 3.a.2---------------')
 	a = model_smooth.probability("perfect", "movie")
 	b = model_smooth.probability("storm", "movie")
@@ -110,27 +110,25 @@ def Lab3_3a():
 	print("\n'perfect storm' with smoothing on movie:", model_smooth.probability("perfect storm", "movie"))
 	print("'perfect storm' with smoothing on song:", model_smooth.probability("perfect storm", "song"))
 
-		# YOUR CODE HERE!
+	# Returns the values.
+	# 1. Prior probability of labels used in training. (movie, song)
+	# 2. Probability of word under given prior label (i.e., P(word|label)) according to this NB model.
+	#         a. P(perfect|movie)
 
-		# Returns the values.
-		# 1. Prior probability of labels used in training. (movie, song)
-		# 2. Probability of word under given prior label (i.e., P(word|label)) according to this NB model.
-		#         a. P(perfect|movie)
-
-		#         b. P(storm|movie)
-		#         c. P(perfect|song)
-		#         d. P(storm|song)
-		# 3. Probability of the title 'perfect storm' is labeled as 'movie' and 'song' with no-smooth mode and smooth mode (k=1)
-	
+	#         b. P(storm|movie)
+	#         c. P(perfect|song)
+	#         d. P(storm|song)
+	# 3. Probability of the title 'perfect storm' is labeled as 'movie' and 'song' with no-smooth mode and smooth mode (k=1)
 
 	model_rough = MaximumLikelihood(0)
 	model_rough.train('movie', MOVIE)
 	model_rough.train('song', SONG)
 	print("no smoothing on movie:", model_rough.probability("perfect storm", "movie"))
 	print("no smoothing on song:", model_rough.probability("perfect storm", "song"))
-	
+
+
 def Lab3_3b():
-	print ('\nLab3_3b')
+	print('\nLab3_3b')
 
 	HAM = ["play sport today", "went play sport", "secret sport event", "sport is today", "sport costs money"]
 	SPAM = ["offer is secret", "click secret link", "secret sport link"]
@@ -140,21 +138,17 @@ def Lab3_3b():
 	model.train('H', HAM)
 
 	"""
-		YOUR CODE HERE!
 		Returns the values.
 		1. Prior probability of labels for SPAM, HAM data.
 		2. Probability of word 'secret', 'sport' under given prior label (SPAM, HAM)
 		3. Probabilities of: The word 'today is secret' is labeled as SPAM, HAM with no-smooth mode and smooth mode (k=1)
 	"""
 
-
-
 	print('\n---------------TASK 3.b.1---------------')
 	spam_prior = model.prior("S")
 	ham_prior = model.prior("H")
 	print("Prior probability of label 'spam':", spam_prior)
 	print("Prior probability of label 'ham':", ham_prior)
-
 
 	print('\n---------------TASK 3.b.2---------------')
 	# TODO DO TO

@@ -1,8 +1,6 @@
-from nltk import word_tokenize
-from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import euclidean_distances
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import euclidean_distances
+
 
 def readFromFile():
     # trying without SW
