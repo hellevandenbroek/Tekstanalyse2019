@@ -35,6 +35,7 @@ def print_accuracy(classifier_name ,set_name, classifier, word_set):
     accuracy = nltk.classify.accuracy(classifier, word_set)
     print("\nAccuracy for gender classifier ({}) based on {} set: {}".format(classifier_name, set_name, accuracy))
 
+
 # Used for finding errors in a classifier
 def find_name_errors(classifier, names):
     errors = []
@@ -44,19 +45,21 @@ def find_name_errors(classifier, names):
             errors.append((tag, guess, name))
     return errors
 
+
 def print_name_errors(errors):
     for (tag, guess, name) in sorted(errors):
         print('correct={:<8} guess={:<8} name={:<30}'.format(tag, guess, name))
-
 
 
 # Naive Bayes
 def start_bayes_classifier(train): # train_set
     return nltk.NaiveBayesClassifier.train(train)
 
+
 # DecisionTreeClassifier
 def start_decision_tree_classifier(train):
     return nltk.DecisionTreeClassifier.train(train)
+
 
 # Maximum Entropy
 def start_maxent_classifier(train):
