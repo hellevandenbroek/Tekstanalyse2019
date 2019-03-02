@@ -151,7 +151,10 @@ def Lab3_3b():
 	print("Prior probability of label 'ham':", ham_prior)
 
 	print('\n---------------TASK 3.b.2---------------')
-	# TODO DO TO
+	print("Probability of word 'secret', under given prior label SPAM: ", model.probability('secret', 'S'))
+	print("Probability of word 'secret', under given prior label HAM: ", model.probability('secret', 'H'))
+	print("Probability of word 'sport', under given prior label SPAM: ", model.probability('sport', 'S'))
+	print("Probability of word 'sport', under given prior label HAM: ", model.probability('sport', 'H'))
 
 	print('\n---------------TASK 3.b.3---------------')
 	print("\n'today is secret' without smoothing on ham:", model.probability("today is secret", "H"))

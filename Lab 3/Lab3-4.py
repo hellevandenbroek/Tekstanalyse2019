@@ -72,9 +72,11 @@ results = readFromFile()
 tweets = results[0]
 names = results[1]
 
+'''
 print('\n---------------TWEETS---------------')
 print("tweets:", tweets)
 print('Input tweet: ', input_tweet)
+'''
 
 print('\n---------------CORPORA---------------')
 print(names[0], ': ', tweets[0])
