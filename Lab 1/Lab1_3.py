@@ -43,7 +43,7 @@ def save_to_file_stopwords(name, top_tweets):
 
 def removeStops(tokenized_tweets):
     # akkurat nå legges alle tweets i forskjellige bolker,
-    # sånn: [[...], [...]] TODO fjern disse kommentarene før innlevering
+    # sånn: [[...], [...]]
     all_stops = set(stopwords.words("english"))
     without_stops = []
     stops = []
