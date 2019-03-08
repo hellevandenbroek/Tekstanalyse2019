@@ -10,6 +10,7 @@ from nltk import ngrams
     - return most correct sentence and its probability
 """
 
+
 def readFromFile():
     # trying without SW
     f = open("twitterCorpus.txt", "r", encoding="utf-8")
@@ -24,16 +25,22 @@ def readFromFile():
         tweets.append(tweeter[colon + 1:])
     return tweets, names
 
+
 def find_probability(ngram, word, context):
     #return ngram.probdi(word, context)
     return 'hello'
 
+
 def start_gram(tweets):
-    sentence = tweets
-    n = 6
-    sixgrams = ngrams(sentence.split(), n)
-    for grams in sixgrams:
-        print(grams)
+    n = 4
+    complete_ngram = []
+    ngram = ngrams(tweets.split(), n)
+    for gram in ngram:
+        complete_ngram.append(gram)
+    return complete_ngram
+
+
+input: ['make', 'america']
 
 tweets = readFromFile()[0]
 print(tweets)
@@ -42,3 +49,4 @@ print(list_tweets)
 ng = start_gram(list_tweets)
 
 
+print(ng)
