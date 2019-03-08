@@ -1,7 +1,6 @@
 from nltk import ngrams
 
 
-
 """
     TODO: 
     - find out how to generate full sentence using nltk's ngrams
@@ -36,18 +35,29 @@ def split_tweets(tweets):
 
 def start_ngram():
     tweets = readFromFile()[0][0]  # tweets > trump's
-    print(tweets)
     spl = split_tweets(tweets)
     model = ngrams(spl, 3)
-
     prob = find_probability(model, "and", tweets)
-    print(prob)
     return model
 
 
 def find_probability(ngram, word, context):
-    return ngram.probdi(word, context)
+    #return ngram.probdi(word, context)
+    return 'hello'
 
+def start_gram(tweets):
+    sentence = tweets
+    n = 6
+    sixgrams = ngrams(sentence.split(), n)
+    for grams in sixgrams:
+        print(grams)
 
-ng = start_ngram()
+tweet_list = readFromFile()[0]
+print(tweet_list)
+str1 = ''.join(str(e) for e in tweet_list)
+str2 = ''.join(str1)
+print(str1)
+print(str2)
+ng = start_gram(str2)
+
 
