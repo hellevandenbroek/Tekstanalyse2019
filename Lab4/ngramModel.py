@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+"""
+    Code fetched from:
+    https://github.com/foxbook/atap/blob/master/snippets/ch07/model.py
+"""
+
+
 import nltk
 
 from math import log
