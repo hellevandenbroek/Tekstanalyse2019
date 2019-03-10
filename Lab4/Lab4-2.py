@@ -1,5 +1,5 @@
 from nltk import ngrams
-
+import nltk
 
 """
     TODO: 
@@ -21,14 +21,22 @@ def readFromFile():
         colon = tweeter.index(":")
         name = tweeter[0:colon]
         names.append(name)
-        tweeter = line.split('-,-')
-        tweets.append(tweeter[colon + 1:])
+        only_tweets = tweeter[colon + 1:]
+        new_tweeter = only_tweets.split('-,-')
+        for tw in new_tweeter:
+            tweets.append(tw.lower())
     return tweets, names
 
 
-def find_probability(ngram, word, context):
-    #return ngram.probdi(word, context)
-    return 'hello'
+def count_ngrams(ng, string):
+    length = len(ng)
+    print(ng)
+    count = 0
+    for gram in ng:
+        if string in gram:
+            count += 1
+    prob = count/length
+    return prob
 
 
 def start_gram(tweets):
@@ -40,13 +48,18 @@ def start_gram(tweets):
     return complete_ngram
 
 
-input: ['make', 'america']
+print('\n---------------INPUT---------------')
+string = 'america'
+print(string)
 
+
+print('\n---------------N-GRAM---------------')
 tweets = readFromFile()[0]
-print(tweets)
 list_tweets = ''.join(str(e) for e in tweets)
-print(list_tweets)
 ng = start_gram(list_tweets)
 
 
-print(ng)
+print('\n---------------PROBABILITY FOR INPUT---------------')
+prob = count_ngrams(ng, string)
+
+print(prob)
