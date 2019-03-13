@@ -14,8 +14,6 @@ from collections import Counter, defaultdict
 from nltk.util import ngrams
 from nltk.probability import ProbDistI, FreqDist, ConditionalFreqDist
 
-# from reader import PickledCorpusReader
-
 
 def count_ngrams(n, vocabulary, texts):
     counter = NgramCounter(n, vocabulary)
@@ -208,15 +206,41 @@ class KneserNeyModel(BaseNgramModel):
         return self.model.prob(sample)
 
 
+def readFromFile():
+    # trying without SW
+    f = open("twitterCorpus.txt", "r", encoding="utf-8")
+    tweets = []
+    names = []
+    for line in f.readlines():
+        tweeter = line
+        colon = tweeter.index(":")
+        name = tweeter[0:colon]
+        names.append(name)
+        only_tweets = tweeter[colon + 1:]
+        new_tweeter = only_tweets.split('-,-')
+        for tw in new_tweeter:
+            tweets.append(tw.lower())
+    return tweets, names
+
+
 if __name__ == '__main__':
     corpus = open("twitterCorpus.txt", "r", encoding="utf-8")  # FIXME hente informasjon riktig fra fil
-    tokens = [''.join(word) for word in corpus.words()]
+    corpus_from_file = readFromFile()
+
+    """
+        Nå leser den fra fil. Tokens og sents under er ikke riktig definert av meg.
+        Vil anta at tokens bare er ordene splitta opp. og sents er hele tweets vi har.
+        Virker som at vi snart er i mål.
+    """
+
+    tweets = corpus_from_file[0]
+    tokens = [''.join(tweet) for tweet in tweets]
+    print(tokens)
     vocab = Counter(tokens)
-    sents = list([word[0] for word in sent] for sent in corpus.sents())
+    sents = list([word[0] for word in sent] for sent in corpus_from_file[0])
 
     counter = count_ngrams(3, vocab, sents)
     knm = KneserNeyModel(counter)
-
 
     def complete(input_text):
         tokenized = nltk.word_tokenize(input_text)
