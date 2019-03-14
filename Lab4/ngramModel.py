@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 from nltk import word_tokenize
 
-
 """
     Code fetched from:
     https://github.com/foxbook/atap/blob/master/snippets/ch07/model.py
 """
-
 
 import nltk
 
@@ -251,9 +249,7 @@ if __name__ == '__main__':
     print("full list:", full)
     print('Tokens: ', tokens)
 
-    print(Counter(full))
-
-    vocab = Counter(tokens)
+    vocab = Counter(full)
 
     print('vocab: ', vocab)
     sents = list([word[0] for word in sent] for sent in corpus_from_file[0])
