@@ -251,7 +251,7 @@ if __name__ == '__main__':
     print("full list:", full)
     print('Tokens: ', tokens)
 
-    print(Counter(tokens))
+    print(Counter(full))
 
     vocab = Counter(tokens)
 
