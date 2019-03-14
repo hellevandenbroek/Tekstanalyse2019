@@ -243,7 +243,12 @@ if __name__ == '__main__':
     tokens3 = [''.join(tweet) for tweet in tweets]
 
     tokens = tokenize(tokens3)
+    full = []
+    for item in tokens:
+        for boom in item:
+            full.append(boom)
 
+    print("full list:", full)
     print('Tokens: ', tokens)
 
     print(Counter(tokens))
@@ -276,4 +281,4 @@ if __name__ == '__main__':
         return response
 
     print(complete("The President of the United"))
-print(complete("This election year will"))
+    print(complete("This election year will"))
