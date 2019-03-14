@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from nltk import word_tokenize
+
 
 """
     Code fetched from:
@@ -12,6 +14,7 @@ from math import log
 from collections import Counter, defaultdict
 
 from nltk.util import ngrams
+
 from nltk.probability import ProbDistI, FreqDist, ConditionalFreqDist
 
 
@@ -223,22 +226,32 @@ def readFromFile():
     return tweets, names
 
 
+def tokenize(tweets):
+    tokens = []
+    for tweet in tweets:
+        tokens += [word_tokenize(tweet)]
+    return tokens
+
+
 if __name__ == '__main__':
-    corpus = open("twitterCorpus.txt", "r", encoding="utf-8")  # FIXME hente informasjon riktig fra fil
     corpus_from_file = readFromFile()
 
-    """
-        Nå leser den fra fil. Tokens og sents under er ikke riktig definert av meg.
-        Vil anta at tokens bare er ordene splitta opp. og sents er hele tweets vi har.
-        Virker som at vi snart er i mål.
-    """
-
     tweets = corpus_from_file[0]
-    tokens = [''.join(tweet) for tweet in tweets]
-    print(tokens)
-    vocab = Counter(tokens)
-    sents = list([word[0] for word in sent] for sent in corpus_from_file[0])
 
+    print('Tweets: ', tweets)
+
+    tokens3 = [''.join(tweet) for tweet in tweets]
+
+    tokens = tokenize(tokens3)
+
+    print('Tokens: ', tokens)
+
+    print(Counter(tokens))
+
+    vocab = Counter(tokens)
+
+    print('vocab: ', vocab)
+    sents = list([word[0] for word in sent] for sent in corpus_from_file[0])
     counter = count_ngrams(3, vocab, sents)
     knm = KneserNeyModel(counter)
 

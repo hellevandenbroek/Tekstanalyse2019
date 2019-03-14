@@ -1,10 +1,13 @@
 import nltk
+from nltk import word_tokenize
+
 
 def process(document):
    sentences = nltk.sent_tokenize(document)
    sentences = [nltk.word_tokenize(sent) for sent in sentences]
    sentences = [nltk.pos_tag(sent) for sent in sentences]
    return sentences
+
 
 def readFromFile():
     f = open("SpaceX.txt", "r", encoding="utf-8")
