@@ -233,28 +233,28 @@ def tokenize(tweets):
 
 if __name__ == '__main__':
     corpus_from_file = readFromFile()
-
     tweets = corpus_from_file[0]
 
     print('Tweets: ', tweets)
 
     tokens3 = [''.join(tweet) for tweet in tweets]
-
     tokens = tokenize(tokens3)
+
     full = []
     for item in tokens:
         for boom in item:
             full.append(boom)
 
-    print("full list:", full)
+    print("Full list:", full)
     print('Tokens: ', tokens)
 
     vocab = Counter(full)
 
     print('vocab: ', vocab)
-    sents = list([word[0] for word in sent] for sent in corpus_from_file[0])
-    counter = count_ngrams(3, vocab, sents)
+    counter = count_ngrams(3, vocab, tweets)
     knm = KneserNeyModel(counter)
+    print(knm.score("this", "This sentence a"))
+
 
     def complete(input_text):
         tokenized = nltk.word_tokenize(input_text)
