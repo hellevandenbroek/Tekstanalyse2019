@@ -237,27 +237,17 @@ if __name__ == '__main__':
 
     print('Tweets: ', tweets)
 
-    tokens3 = [''.join(tweet) for tweet in tweets]
-    tokens = tokenize(tokens3)
+    tokens = tokenize([''.join(tweet) for tweet in tweets])
 
     full = []
     for item in tokens:
         for boom in item:
             full.append(boom)
 
-    print("Full list:", full)
-    print('Tokens: ', tokens)
-
     vocab = Counter(full)
-
-    print('vocab: ', vocab)
-
-    herrejesus = [[word for word in tweets] for tweet in tweets]
-    # print("herrejesus:", herrejesus[0][0])
 
     counter = count_ngrams(3, vocab, tokens)
     knm = KneserNeyModel(counter)
-    print(knm.score("make", "america great again"))
 
 
     def complete(input_text):
@@ -280,5 +270,12 @@ if __name__ == '__main__':
 
         return response
 
-    print(complete("The President of the United"))
-    print(complete("This election year will"))
+    def format_complete(input_text):
+        com = complete(input_text)
+        if com == "Can we talk about something else?":
+            return "Unable to find answer to this."
+        return "The calculated completed word for the input: '{}' was:\n {}\n~~~~~~".format(input_text, com)
+
+    print(format_complete("hiv is"))
+    print(format_complete("crooked hillary"))
+    print(format_complete("made america"))
