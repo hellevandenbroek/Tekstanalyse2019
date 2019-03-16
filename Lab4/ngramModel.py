@@ -251,9 +251,13 @@ if __name__ == '__main__':
     vocab = Counter(full)
 
     print('vocab: ', vocab)
-    counter = count_ngrams(3, vocab, tweets)
+
+    herrejesus = [[word for word in tweets] for tweet in tweets]
+    # print("herrejesus:", herrejesus[0][0])
+
+    counter = count_ngrams(3, vocab, tokens)
     knm = KneserNeyModel(counter)
-    print(knm.score("this", "This sentence a"))
+    print(knm.score("make", "america great again"))
 
 
     def complete(input_text):
