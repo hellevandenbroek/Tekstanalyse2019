@@ -20,10 +20,9 @@ def readFromFile():
     return lines
 
 grammar = r"""
-    NP: {< NNP > ∗}
-    PP: {< DT >? < JJ >? < NNS >}
-    VP: {< NN >< NN >}
-    """
+    NP: {<NNP>*}
+        {<DT>?<JJ>?<NNS>}
+        {<NN><NN>}"""
 
 document = readFromFile()
 processed_doc = process(readFromFile())
