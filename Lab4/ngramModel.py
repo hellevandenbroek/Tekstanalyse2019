@@ -245,37 +245,38 @@ if __name__ == '__main__':
             full.append(boom)
 
     vocab = Counter(full)
-
     counter = count_ngrams(3, vocab, tokens)
     knm = KneserNeyModel(counter)
 
-
     def complete(input_text):
+        highest_value = 0
         tokenized = nltk.word_tokenize(input_text)
         if len(tokenized) < 2:
             response = "Say more."
         else:
             completions = {}
+            prob_value = []
             for sample in knm.samples():
                 if (sample[0], sample[1]) == (tokenized[-2], tokenized[-1]):
                     completions[sample[2]] = knm.prob(sample)
+                    prob_value.append(knm.prob(sample))
             if len(completions) == 0:
                 response = "Can we talk about something else?"
             else:
                 best = max(
                     completions.keys(), key=(lambda key: completions[key])
                 )
+                highest_value = max(prob_value)
                 tokenized += [best]
                 response = " ".join(tokenized)
-
-        return response
+        return response, highest_value
 
     def format_complete(input_text):
         com = complete(input_text)
         if com == "Can we talk about something else?":
-            return "Unable to find answer to this."
-        return "The calculated completed word for the input: '{}' was:\n {}\n~~~~~~".format(input_text, com)
+            return "Unable to find an answer to this."
+        return "The calculated completed word for the input: '{}' was:\n {}\n Probability: {}\n~~~~~~".format(input_text, com[0], com[1])
 
     print(format_complete("hiv is"))
     print(format_complete("crooked hillary"))
-    print(format_complete("made america"))
+    print(format_complete("make america great"))
