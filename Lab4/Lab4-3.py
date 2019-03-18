@@ -37,5 +37,16 @@ print(processed_doc)
 
 print('\n---------------PARSED---------------')
 print(result)
+
+print('\n---------------MATCHES---------------')
+matches = []
+for sent in processed_doc:
+    tree = cp.parse(sent)
+    for subtree in tree.subtrees():
+        if subtree.label() == 'NP':
+            matches.append(subtree[0][0])
+print(matches)
+
+
 print(result.draw())
 
