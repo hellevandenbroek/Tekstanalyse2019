@@ -47,6 +47,5 @@ for sent in processed_doc:
             matches.append(subtree[0][0])
 print(matches)
 
-
 print(result.draw())
 
