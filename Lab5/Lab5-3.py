@@ -1,4 +1,5 @@
-'''Exercise 3 (Nltk-Predicates) Translate the following sentences into predicate-argument formula of
+'''
+Exercise 3 (Nltk-Predicates) Translate the following sentences into predicate-argument formula of
 first order logic.
 (a) Angus likes Cyril and Irene hates Cyril.
 (b) Tofu is taller than Bertie.
