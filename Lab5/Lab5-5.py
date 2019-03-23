@@ -2,7 +2,6 @@ from textblob import TextBlob
 
 # Sources: https://medium.freecodecamp.org/how-to-build-a-twitter-sentiments-analyzer-in-python-using-textblob-948e1e8aae14
 
-
 def readFromFile():
     f = open("twitterCorpus.txt", "r", encoding="utf-8")
     tweets = []
@@ -10,7 +9,6 @@ def readFromFile():
         tweet = line
         tweets.append(tweet)
     return tweets
-
 
 all_tweets = readFromFile()
 
@@ -24,5 +22,3 @@ for tweet in all_tweets:
         print('Negative')
     else:
         print('Neutral')
-
-        
