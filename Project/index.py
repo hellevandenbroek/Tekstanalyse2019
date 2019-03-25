@@ -4,7 +4,8 @@
 #TODO: poetry generation
 
 import makeCorpus
-
+import handleCorpus
 
 user = input("Type in a twitter-account you want to generate poetry from: ")
 makeCorpus.make_corpus(user)
+
