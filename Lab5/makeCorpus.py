@@ -17,7 +17,7 @@ tweets = [tweet.full_text for tweet in string]
 
 def save_to_file(top_tweets):
     try:
-        f = open("twitterCorpus.txt", "ab")
+        f = open("test.txt", "ab")
         for tweet in top_tweets:
             print(tweet)
             if len(tweet) > 1:
