@@ -8,7 +8,7 @@ b = read_expr('P and Q')
 
 c = read_expr('-P -> Q')
 
-d = read_expr('(P or Q) -> -R')
+d = read_expr('((P or Q) -> R)')
 
 e = read_expr('-(P | R)')
 
@@ -17,7 +17,7 @@ f = read_expr('(P -> -R) <-> (Q -> -S)')
 tasks = [a, b, c, d, e, f]
 
 for task in tasks:
-    
+
     print(task)
 
 
