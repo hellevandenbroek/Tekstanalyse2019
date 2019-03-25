@@ -18,8 +18,8 @@ v = """
     like => {(a, s), (s, j), -(c, i)}
     love => {(a, d), (d, a), (m, p)}
     smile => {n, p}
-    cough & sneeze => {s}
-    coughed & sneezed => {n}
+    cough_sneeze => {s}
+    coughed_sneezed => {n}
     sleep => {1}
 """
 
@@ -29,11 +29,15 @@ print(val)
 print(('a', 's') in val['like'])
 print(('j', 'd') not in val['like'])
 
-g = nltk.Assignment(dom, [('a', 's'), ('j', 'd')])
+g_variables = [('x', 's'), ('j', 'd')]
 
-print(g)
+g = nltk.Assignment(dom, g_variables)
+
+print("g: ", g)
 
 m = nltk.Model(dom, val)
 
-print(m.evaluate('love(angus, dog)', g))
+print("angus, dog: ", m.evaluate('love(angus, dog)', g))
 
+smile = m.evaluate('exists x.(coughed_sneezed(x) & smile(x, p))', g)
+print("smile:", smile)
