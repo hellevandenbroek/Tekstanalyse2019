@@ -13,6 +13,7 @@ def make_corpus(username):
     tweets = [tweet.full_text for tweet in string]
     save_to_file(tweets, username)
 
+
 def save_to_file(tweets, username):
     try:
         file = open("{}.txt".format(username), "ab")

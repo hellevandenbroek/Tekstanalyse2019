@@ -1,9 +1,6 @@
 import nltk
 
-
 dom = {'a', 'j', 'd', 'n', 'p', 's', 'b', 'm', 'c', 'i', '1'}
-
-
 v = """
     angus => a
     julia => j
@@ -75,16 +72,19 @@ print('(f): ', ex_f)
 
 # g
 gg = assign_g([])
+# Nobody other than Matthew loves Pat.
 ex_g = m.evaluate('', gg)
 print('(g): ', ex_g)
 
 # h
 gh = assign_g([])  # cyril and irene
+# Cyril likes everyone except for Irene.
 ex_h = m.evaluate('', gh)
 print('(h): ', ex_h)
 
 # i
-gi = assign_g([]) # one person
+gi = assign_g([])  # one person
+# Exactly one person is asleep.
 ex_i = m.evaluate('', gi)
 print('(i): ', ex_i)
 
