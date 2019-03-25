@@ -11,11 +11,11 @@ def make_corpus(username):
     tweet_mode = 'extended'
     string = api.user_timeline(screen_name=username, tweet_mode=tweet_mode, count=200)
     tweets = [tweet.full_text for tweet in string]
-    save_to_file(tweets)
+    save_to_file(tweets, username)
 
-def save_to_file(tweets):
+def save_to_file(tweets, username):
     try:
-        file = open("test.txt", "ab")
+        file = open("{}.txt".format(username), "ab")
         top_tweets = tweets
         for tweet in top_tweets:
             print(tweet)
