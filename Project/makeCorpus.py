@@ -9,16 +9,17 @@ def make_corpus(username):
     auth.set_access_token(access_key, access_secret)
     api = tweepy.API(auth)
     tweet_mode = 'extended'
-    string = api.user_timeline(screen_name=username, tweet_mode=tweet_mode)
+    string = api.user_timeline(screen_name=username, tweet_mode=tweet_mode, count=200)
     tweets = [tweet.full_text for tweet in string]
     save_to_file(tweets)
 
 def save_to_file(tweets):
     try:
-        f = open("test.txt", "ab")
+        file = open("test.txt", "ab")
         top_tweets = tweets
         for tweet in top_tweets:
+            print(tweet)
             if len(tweet) > 1:
-                f.write(tweet.encode() + '\n'.encode())
+                file.write(tweet.encode() + '\n'.encode())
     finally:
-        f.close()
+        file.close()
