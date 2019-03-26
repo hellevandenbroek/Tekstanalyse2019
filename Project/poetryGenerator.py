@@ -1,5 +1,5 @@
 import nltk
-from nltk.corpus import brown
+import random
 
 class PoetryGenerator:
     """
@@ -14,6 +14,7 @@ class PoetryGenerator:
         self.fetch_tweets()
         self.np = []
         self.clause = []
+        self.wrb = []
 
     def fetch_tweets(self):
         print('Now generating a poem based on the tweets from {}......'.format(self.username))
@@ -22,7 +23,6 @@ class PoetryGenerator:
         for line in file:
             corpus.append(line)
         self.corpus = corpus
-
         self.make_chunks()
 
 
@@ -31,11 +31,13 @@ class PoetryGenerator:
         grammar = r"""
             NP: {<DT><JJ><NN>} # Noun phrase
             NOUNP: {<DT>?<JJ.*>*<NN*>+} # Noun phrase used for clauses
-            CLAUSE: {<VB><IN><NOUNP>}    # Verb
+            CLAUSE: {<IN><NOUNP>}    # Verb
+            WRB: {<IN>}
         """
         cp = nltk.RegexpParser(grammar)
         nps = []
         clauses = []
+        wrbs = []
 
         for sentence in document:
             sent = nltk.word_tokenize(sentence)
@@ -57,16 +59,32 @@ class PoetryGenerator:
                         line += word[0]
                         line += " "
                     clauses.append(line)
+
+                elif subtree.label() == 'WRB':
+                    line = ""
+                    for word in subtree.leaves():
+                        line += word[0]
+                        line += " "
+                    wrbs.append(line)
+
         self.np = nps
         self.clause = clauses
+        self.wrb = wrbs
         self.print_poem()
 
     def print_poem(self):
-        print("An incredible poem, constructed based on the twitter account of {}: ".format(self.username))
         print(" ")
-        print(self.np[1])
-        print(self.clause[1])
-        print(self.np[4])
+        print("Based of: ")
+        print(self.username)
+        print(" ")
+        lenNP = len(self.np)
+        lenClause = len(self.clause)
+        lenWrb = len(self.wrb)
+
+        print(self.np[random.randint(0, lenNP)])
+        print(self.clause[random.randint(0, lenClause)])
+        print(self.wrb[random.randint(0, lenWrb)] + self.np[random.randint(0, lenNP)])
+        print(self.np[random.randint(0, lenNP)])
         print(" ")
 
 # comment about what each part of speech is:

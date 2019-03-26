@@ -19,7 +19,7 @@ class CorpusGenerator:
         self.add_tweets()
 
     def add_tweets(self):
-        string = self.api.user_timeline(screen_name=self.username, tweet_mode=self.tweet_mode, count=200)
+        string = self.api.user_timeline(screen_name=self.username, tweet_mode=self.tweet_mode, count=1000)
         self.tweets = [tweet.full_text for tweet in string]
         self.remove_unnecessary()
 
