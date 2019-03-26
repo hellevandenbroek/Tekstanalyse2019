@@ -5,6 +5,7 @@
 
 import sys
 from twitterCorpus import CorpusGenerator
+from poetryGenerator import PoetryGenerator
 
 options = ["add account", "generate poem", "exit application"]
 
@@ -35,7 +36,6 @@ while True:
     user_choice = input(">")
     chosen_choice = determine_choice(user_choice)
     if chosen_choice != -1:
-
         # first option
         if chosen_choice == 0:
             user = input("Type in a twitter-account you want to generate poetry from: ")
@@ -44,8 +44,8 @@ while True:
             cp.save_to_file()
 
         if chosen_choice == 1:
-            # swap this out with proper way
-            swap = 'this'
+            user = input("From which of your corpus would you like to generate a poem?: ")
+            hello = PoetryGenerator(user)
 
         if chosen_choice == 2:
             print("Closed application")

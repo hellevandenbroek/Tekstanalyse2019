@@ -1,3 +1,5 @@
+import nltk
+from nltk.corpus import brown
 
 class PoetryGenerator:
     """
@@ -5,8 +7,49 @@ class PoetryGenerator:
         poems. This makes use of the files from
         the Corpus directory.
     """
-    def __init__(self):
+    def __init__(self, username):
         self.foo = "bar"
+        self.username = username
+        self.corpus = []
+        self.fetch_tweets()
+
+    def fetch_tweets(self):
+        print(self.username)
+        corpus = []
+        file = open("./Corpus/{}.txt".format(self.username),"r", encoding="utf-8")
+        for line in file:
+            corpus.append(line)
+        self.corpus = corpus
+        print(self.corpus)
+
+    def make_chunks(self):
+
+        document = self.corpus
+
+        sentences = nltk.sent_tokenize(document)
+        sentences = [nltk.word_tokenize(sent) for sent in sentences]
+        sentences = [nltk.pos_tag(sent) for sent in sentences]
+
+        grammar = "NP: {<DT>?<JJ>*<NN>}"
+
+        cp = nltk.RegexpParser(grammar)
+
+        for sentence in sentences:
+            result = cp.parse(sentence)
+            print(result)
+
+
+    def getClauses(self, cp, tagged):
+        list_of_tuples = set()
+        for sent in tagged:
+            tree = cp.parse(sent)
+            for subtree in tree.subtrees():
+                if subtree.label() == 'CLAUSE':
+                    x = subtree[0][0]
+                    y = subtree[1][0]
+                    list_of_tuples.add((x,y, "NP"))
+        return list_of_tuples
+
 
 
 # comment about what each part of speech is:
