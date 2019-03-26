@@ -21,6 +21,7 @@ class CorpusGenerator:
     def add_tweets(self):
         string = self.api.user_timeline(screen_name=self.username, tweet_mode=self.tweet_mode, count=200)
         self.tweets = [tweet.full_text for tweet in string]
+        self.set_tweet_mode()
 
     def save_to_file(self):
         if len(self.tweets) == 0:
@@ -35,6 +36,18 @@ class CorpusGenerator:
             file.close()
             print("Saved regular {} to corpus".format(self.username))
 
-    def handleCorpus(self):
-        for tweet in tweets:
-            if 
+    def set_tweet_mode(self):
+        for tweet in self.tweets:
+            
+
+            print(tweet)
+
+    def handle_word(self, word):
+        if word.startswith('@'):
+            return True
+
+        else if word.startswith('RT'):
+            return True
+
+        else:
+            return False
