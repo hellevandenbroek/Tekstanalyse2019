@@ -20,22 +20,22 @@ class PoetryGenerator:
         for line in file:
             corpus.append(line)
         self.corpus = corpus
-        print(self.corpus)
+
+        self.make_chunks()
+
 
     def make_chunks(self):
 
         document = self.corpus
 
-        sentences = nltk.sent_tokenize(document)
-        sentences = [nltk.word_tokenize(sent) for sent in sentences]
-        sentences = [nltk.pos_tag(sent) for sent in sentences]
-
         grammar = "NP: {<DT>?<JJ>*<NN>}"
 
         cp = nltk.RegexpParser(grammar)
 
-        for sentence in sentences:
-            result = cp.parse(sentence)
+        for sentence in document:
+            sent = nltk.word_tokenize(sentence)
+            sent = nltk.pos_tag(sent)
+            result = cp.parse(sent)
             print(result)
 
 
