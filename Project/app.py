@@ -26,22 +26,20 @@ def determine_choice(choice):
     return -1
 
 
-while True:
-    print("<~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~>")
-    print("What do you want to do?")
-    print_options()
-    user_choice = input(">")
-    chosen_choice = determine_choice(user_choice)
-    if chosen_choice != -1:
-        # first option
-        if chosen_choice == 0:
-            user = input("Type in a twitter-account you would want to make a corpus from: ")
-            cp = CorpusGenerator(user)
-            print("First tweet:", cp.tweets[0])
-            cp.save_to_file()
-        if chosen_choice == 1:
-            user = input("From which of your corpuses would you like to generate a poem?: ")
-            hello = PoetryGenerator(user)
+print("<~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~>")
+print("What do you want to do?")
+print_options()
+user_choice = input(">")
+chosen_choice = determine_choice(user_choice)
+if chosen_choice != -1:
+    # first option
+    if chosen_choice == 0:
+        user = input("Type in a twitter-account you would want to make a corpus from: ")
+        cp = CorpusGenerator(user)
+        cp.save_to_file()
+    if chosen_choice == 1:
+        user = input("From which of your corpus would you like to generate a poem?: ")
+        hello = PoetryGenerator(user)
 
 
 
