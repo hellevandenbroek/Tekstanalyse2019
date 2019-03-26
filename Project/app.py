@@ -5,6 +5,7 @@
 
 
 from twitterCorpus import CorpusGenerator
+from poetryGenerator import PoetryGenerator
 
 options = ["add account", "generate poem"]
 
@@ -33,11 +34,14 @@ while True:
     chosen_choice = determine_choice(user_choice)
     if chosen_choice != -1:
         # first option
-        user = input("Type in a twitter-account you want to generate poetry from: ")
-        cp = CorpusGenerator(user)
-        print("First tweet:", cp.tweets[0])
-        cp.save_to_file()
-
+        if chosen_choice == 0:
+            user = input("Type in a twitter-account you would want to make a corpus from: ")
+            cp = CorpusGenerator(user)
+            print("First tweet:", cp.tweets[0])
+            cp.save_to_file()
+        if chosen_choice == 1:
+            user = input("From which of your corpuses would you like to generate a poem?: ")
+            hello = PoetryGenerator(user)
 
 
 

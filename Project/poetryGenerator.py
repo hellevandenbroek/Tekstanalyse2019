@@ -5,8 +5,14 @@ class PoetryGenerator:
         poems. This makes use of the files from
         the Corpus directory.
     """
-    def __init__(self):
+    def __init__(self, username):
         self.foo = "bar"
+        self.username = username
+
+        self.fetch_tweets()
+
+    def fetch_tweets(self):
+        print(self.username)
 
 
 # comment about what each part of speech is:
