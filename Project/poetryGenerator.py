@@ -14,7 +14,7 @@ class PoetryGenerator:
         self.fetch_tweets()
 
     def fetch_tweets(self):
-        print(self.username)
+        print('Now generating a poem based on the tweets from {}......'.format(self.username))
         corpus = []
         file = open("./Corpus/{}.txt".format(self.username),"r", encoding="utf-8")
         for line in file:
@@ -27,8 +27,11 @@ class PoetryGenerator:
     def make_chunks(self):
 
         document = self.corpus
-
-        grammar = "NP: {<DT>?<JJ>*<NN>}"
+        grammar = r"""
+            NP: {<DT><JJ><NN>} # Noun phrase
+            NOUNP: {<DT>?<JJ.*>*<NN.*>+} # Noun phrase used for clauses
+            CLAUSE: {<VB><IN><NOUNP>}    # Verb
+        """
 
         cp = nltk.RegexpParser(grammar)
 
@@ -36,20 +39,9 @@ class PoetryGenerator:
             sent = nltk.word_tokenize(sentence)
             sent = nltk.pos_tag(sent)
             result = cp.parse(sent)
-            print(result)
-
-
-    def getClauses(self, cp, tagged):
-        list_of_tuples = set()
-        for sent in tagged:
-            tree = cp.parse(sent)
-            for subtree in tree.subtrees():
-                if subtree.label() == 'CLAUSE':
-                    x = subtree[0][0]
-                    y = subtree[1][0]
-                    list_of_tuples.add((x,y, "NP"))
-        return list_of_tuples
-
+            for subtree in result.subtrees():
+                if subtree.label() == 'NP':
+                    print(subtree)
 
 
 # comment about what each part of speech is:
