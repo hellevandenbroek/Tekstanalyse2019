@@ -23,9 +23,17 @@ class CorpusGenerator:
         self.tweets = [tweet.full_text for tweet in string]
         self.remove_unnecessary()
 
+    def _is_sufficient_data(self):
+        return len(self.tweets) > 160
+
     def save_to_file(self):
         if len(self.tweets) == 0:
             return
+
+        if not self._is_sufficient_data():
+            print("Not enough data to save. Please choose another account.")
+            return
+
         try:
             file = open("Corpus/{}.txt".format(self.username.lower()), "wb")
             top_tweets = self.tweets
@@ -52,3 +60,8 @@ class CorpusGenerator:
             return True
         else:
             return False
+
+
+if __name__ == '__main__':
+    print("Started CorpusGenerator")
+    corpus = CorpusGenerator()
