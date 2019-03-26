@@ -1,5 +1,6 @@
 import nltk
 
+import random
 
 class PoetryGenerator:
     """
@@ -12,32 +13,80 @@ class PoetryGenerator:
         self.username = username
         self.corpus = []
         self.fetch_tweets()
+        self.np = []
+        self.clause = []
+        self.wrb = []
 
     def fetch_tweets(self):
-        print(self.username)
+        print('Now generating a poem based on the tweets from {}......'.format(self.username))
         corpus = []
         file = open("./Corpus/{}.txt".format(self.username),"r", encoding="utf-8")
         for line in file:
             corpus.append(line)
         self.corpus = corpus
-        print(self.corpus)
+        self.make_chunks()
+
 
     def make_chunks(self):
-
         document = self.corpus
-
-        sentences = nltk.sent_tokenize(document)
-        sentences = [nltk.word_tokenize(sent) for sent in sentences]
-        sentences = [nltk.pos_tag(sent) for sent in sentences]
-
-        grammar = "NP: {<DT>?<JJ>*<NN>}"
-
+        grammar = r"""
+            NP: {<DT><JJ><NN>} # Noun phrase
+            NOUNP: {<DT>?<JJ.*>*<NN*>+} # Noun phrase used for clauses
+            CLAUSE: {<IN><NOUNP>}    # Verb
+            WRB: {<IN>}
+        """
         cp = nltk.RegexpParser(grammar)
+        nps = []
+        clauses = []
+        wrbs = []
 
-        for sentence in sentences:
-            result = cp.parse(sentence)
-            print(result)
+        for sentence in document:
+            sent = nltk.word_tokenize(sentence)
+            sent = nltk.pos_tag(sent)
+            result = cp.parse(sent)
 
+            #We now find noun phrases and clauses to use in our poems
+            for subtree in result.subtrees():
+                if subtree.label() == 'NP':
+                    line = ""
+                    for word in subtree.leaves():
+                        line += word[0]
+                        line += " "
+                    nps.append(line)
+
+                elif subtree.label() == 'CLAUSE':
+                    line = ""
+                    for word in subtree.leaves():
+                        line += word[0]
+                        line += " "
+                    clauses.append(line)
+
+                elif subtree.label() == 'WRB':
+                    line = ""
+                    for word in subtree.leaves():
+                        line += word[0]
+                        line += " "
+                    wrbs.append(line)
+
+        self.np = nps
+        self.clause = clauses
+        self.wrb = wrbs
+        self.print_poem()
+
+    def print_poem(self):
+        print(" ")
+        print("Based of: ")
+        print(self.username)
+        print(" ")
+        lenNP = len(self.np)
+        lenClause = len(self.clause)
+        lenWrb = len(self.wrb)
+
+        print(self.np[random.randint(0, lenNP)])
+        print(self.clause[random.randint(0, lenClause)])
+        print(self.wrb[random.randint(0, lenWrb)] + self.np[random.randint(0, lenNP)])
+        print(self.np[random.randint(0, lenNP)])
+        print(" ")
 
 # comment about what each part of speech is:
 """ CC   - conjunction: or, but, and, either
