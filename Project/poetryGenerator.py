@@ -12,6 +12,8 @@ class PoetryGenerator:
         self.username = username
         self.corpus = []
         self.fetch_tweets()
+        self.np = []
+        self.clause = []
 
     def fetch_tweets(self):
         print('Now generating a poem based on the tweets from {}......'.format(self.username))
@@ -25,24 +27,47 @@ class PoetryGenerator:
 
 
     def make_chunks(self):
-
         document = self.corpus
         grammar = r"""
             NP: {<DT><JJ><NN>} # Noun phrase
-            NOUNP: {<DT>?<JJ.*>*<NN.*>+} # Noun phrase used for clauses
+            NOUNP: {<DT>?<JJ.*>*<NN*>+} # Noun phrase used for clauses
             CLAUSE: {<VB><IN><NOUNP>}    # Verb
         """
-
         cp = nltk.RegexpParser(grammar)
+        nps = []
+        clauses = []
 
         for sentence in document:
             sent = nltk.word_tokenize(sentence)
             sent = nltk.pos_tag(sent)
             result = cp.parse(sent)
+
+            #We now find noun phrases and clauses to use in our poems
             for subtree in result.subtrees():
                 if subtree.label() == 'NP':
-                    print(subtree)
+                    line = ""
+                    for word in subtree.leaves():
+                        line += word[0]
+                        line += " "
+                    nps.append(line)
 
+                elif subtree.label() == 'CLAUSE':
+                    line = ""
+                    for word in subtree.leaves():
+                        line += word[0]
+                        line += " "
+                    clauses.append(line)
+        self.np = nps
+        self.clause = clauses
+        self.print_poem()
+
+    def print_poem(self):
+        print("An incredible poem, constructed based on the twitter account of {}: ".format(self.username))
+        print(" ")
+        print(self.np[1])
+        print(self.clause[1])
+        print(self.np[4])
+        print(" ")
 
 # comment about what each part of speech is:
 """ CC   - conjunction: or, but, and, either
