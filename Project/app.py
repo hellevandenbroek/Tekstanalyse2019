@@ -43,6 +43,10 @@ while True:
             print("First tweet:", cp.tweets[0])
             cp.save_to_file()
 
+        if chosen_choice == 1:
+            # swap this out with proper way
+            swap = 'this'
+
         if chosen_choice == 2:
             print("Closed application")
             sys.exit()
