@@ -1,5 +1,5 @@
 import nltk
-from nltk.corpus import brown
+
 
 class PoetryGenerator:
     """
@@ -37,19 +37,6 @@ class PoetryGenerator:
         for sentence in sentences:
             result = cp.parse(sentence)
             print(result)
-
-
-    def getClauses(self, cp, tagged):
-        list_of_tuples = set()
-        for sent in tagged:
-            tree = cp.parse(sent)
-            for subtree in tree.subtrees():
-                if subtree.label() == 'CLAUSE':
-                    x = subtree[0][0]
-                    y = subtree[1][0]
-                    list_of_tuples.add((x,y, "NP"))
-        return list_of_tuples
-
 
 
 # comment about what each part of speech is:
