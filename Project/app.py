@@ -29,7 +29,25 @@ def determine_choice(choice):
     return -1
 
 
+def handle_corpus():
+    user = input("Type in a twitter-account you want to generate poetry from: ")
+    cp = CorpusGenerator(user)
+    print("First tweet:", cp.tweets[0])
+    cp.save_to_file()
+
+
+def handle_poem_generation():
+    user = input("From which of your corpus would you like to generate a poem?: ")
+    hello = PoetryGenerator(user)
+    hello.make_chunks()
+    hello.print_poem()
+    print("Want to save latest poem to disk? y/n")
+    save = input(">")
+    if save.startswith("y"):
+        hello.save_poem()
+
 while True:
+    print(" ")
     print("<~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~>")
     print("What do you want to do?")
     print_options()
@@ -38,15 +56,9 @@ while True:
     if chosen_choice != -1:
         # first option
         if chosen_choice == 0:
-            user = input("Type in a twitter-account you want to generate poetry from: ")
-            cp = CorpusGenerator(user)
-            print("First tweet:", cp.tweets[0])
-            cp.save_to_file()
-
+            handle_corpus()
         if chosen_choice == 1:
-            user = input("From which of your corpus would you like to generate a poem?: ")
-            hello = PoetryGenerator(user)
-
+            handle_poem_generation()
         if chosen_choice == 2:
             print("Closed application")
             sys.exit()

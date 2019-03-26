@@ -1,6 +1,8 @@
 import nltk
 
 import random
+import pathlib
+
 
 class PoetryGenerator:
     """
@@ -16,6 +18,10 @@ class PoetryGenerator:
         self.np = []
         self.clause = []
         self.wrb = []
+        self.poem = ""
+
+        pathlib.Path('Poems').mkdir(exist_ok=True)
+
 
     def fetch_tweets(self):
         print('Now generating a poem based on the tweets from {}......'.format(self.username))
@@ -71,7 +77,6 @@ class PoetryGenerator:
         self.np = nps
         self.clause = clauses
         self.wrb = wrbs
-        self.print_poem()
 
     def print_poem(self):
         print(" ")
@@ -82,11 +87,26 @@ class PoetryGenerator:
         lenClause = len(self.clause)
         lenWrb = len(self.wrb)
 
-        print(self.np[random.randint(0, lenNP)])
-        print(self.clause[random.randint(0, lenClause)])
-        print(self.wrb[random.randint(0, lenWrb)] + self.np[random.randint(0, lenNP)])
-        print(self.np[random.randint(0, lenNP)])
+        first_line = self.np[random.randint(0, lenNP)]
+        second_line = self.clause[random.randint(0, lenClause)]
+        third_line = self.wrb[random.randint(0, lenWrb)] + self.np[random.randint(0, lenNP)]
+        fourth_line = self.np[random.randint(0, lenNP)]
+
+        self.poem = "{}\n{}\n{}\n{}".format(first_line, second_line, third_line, fourth_line)
+        print(self.poem)
         print(" ")
+
+    def save_poem(self):
+        # Save to file
+        if self.poem == "":
+            return
+        try:
+            file = open("Poems/{}.txt".format(self.username.lower()), "ab")
+            file.write(self.poem.encode() + '\n'.encode())
+        finally:
+            file.close()
+            print("Added poem to collection of {} ".format(self.username))
+
 
 # comment about what each part of speech is:
 """ CC   - conjunction: or, but, and, either
