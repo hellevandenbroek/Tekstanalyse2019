@@ -3,10 +3,10 @@
 # TODO: Ngrams, få dette til å bli riktig
 # TODO: poetry generation
 
-
+import sys
 from twitterCorpus import CorpusGenerator
 
-options = ["add account", "generate poem"]
+options = ["add account", "generate poem", "exit application"]
 
 
 def print_options():
@@ -35,14 +35,14 @@ while True:
     user_choice = input(">")
     chosen_choice = determine_choice(user_choice)
     if chosen_choice != -1:
+
         # first option
-        user = input("Type in a twitter-account you want to generate poetry from: ")
-        cp = CorpusGenerator(user)
-        print("First tweet:", cp.tweets[0])
-        cp.save_to_file()
+        if chosen_choice == 0:
+            user = input("Type in a twitter-account you want to generate poetry from: ")
+            cp = CorpusGenerator(user)
+            print("First tweet:", cp.tweets[0])
+            cp.save_to_file()
 
-
-
-
-
-
+        if chosen_choice == 2:
+            print("Closed application")
+            sys.exit()
