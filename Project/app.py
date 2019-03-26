@@ -11,7 +11,10 @@ options = ["add account", "generate poem"]
 
 def print_options():
     for option in options:
-        print("- {}".format(option))
+        capitalized = option.split()
+        first_word = ''.join([x.capitalize() for x in capitalized[0]])
+        rest = ''.join(capitalized[1:])
+        print("- {} {}".format(first_word, rest))
 
 
 def determine_choice(choice):
