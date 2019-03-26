@@ -8,5 +8,4 @@ from twitterCorpus import CorpusGenerator
 
 user = input("Type in a twitter-account you want to generate poetry from: ")
 cp = CorpusGenerator(user)
-print(cp.tweets[0])
 cp.save_to_file()
