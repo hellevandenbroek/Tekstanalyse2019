@@ -10,7 +10,6 @@ class CorpusGenerator:
         access_secret = "yhqFB8Izpfb6w3pUBxPBUKj62pY654F5cUhTbyCYYRAea"
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_key, access_secret)
-
         pathlib.Path('Corpus').mkdir(exist_ok=True)
 
         self.api = tweepy.API(auth)
@@ -27,7 +26,7 @@ class CorpusGenerator:
         if len(self.tweets) == 0:
             return
         try:
-            file = open("Corpus/{}.txt".format(self.username), "ab")
+            file = open("Corpus/{}.txt".format(self.username.lower()), "wb")
             top_tweets = self.tweets
             for tweet in top_tweets:
                 if len(tweet) > 1:
@@ -36,3 +35,6 @@ class CorpusGenerator:
             file.close()
             print("Saved regular {} to corpus".format(self.username))
 
+    def handleCorpus(self):
+        for tweet in tweets:
+            if 
