@@ -102,7 +102,7 @@ class PoetryGenerator:
             return
         try:
             file = open("Poems/{}.txt".format(self.username.lower()), "ab")
-            file.write(self.poem.encode() + '\n'.encode())
+            file.write(self.poem.encode() + '\n\n'.encode())
         finally:
             file.close()
             print("Added poem to collection of {} ".format(self.username))
