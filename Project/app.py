@@ -64,9 +64,7 @@ def handle_poem_generation():
 
 
 while True:
-    print(" ")
-    print("<~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~>")
-    print("What do you want to do?")
+    print("\n<~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~>\n What do you want to do?")
     print_options()
     user_choice = input(">")
     chosen_choice = determine_choice(user_choice)
