@@ -55,6 +55,7 @@ def handle_corpus():
 def handle_poem_generation():
     user = input("From which of your corpus would you like to generate a poem?: ")
     hello = PoetryGenerator(user)
+    hello.fetch_tweets()
     hello.make_chunks()
     hello.print_poem()
     print("Want to save this poem to disk? y/n")

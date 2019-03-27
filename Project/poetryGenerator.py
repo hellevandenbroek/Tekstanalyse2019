@@ -13,11 +13,11 @@ class PoetryGenerator:
         self.foo = "bar"
         self.username = username
         self.corpus = []
-        self.fetch_tweets()
         self.np = []
         self.clause = []
         self.wrb = []
         self.poem = ""
+
         pathlib.Path('Poems').mkdir(exist_ok=True)
 
     def fetch_tweets(self):
@@ -27,7 +27,6 @@ class PoetryGenerator:
         for line in file:
             corpus.append(line)
         self.corpus = corpus
-        self.make_chunks()
 
     def make_chunks(self):
         document = self.corpus
@@ -45,8 +44,7 @@ class PoetryGenerator:
             sent = nltk.word_tokenize(sentence)
             sent = nltk.pos_tag(sent)
             result = cp.parse(sent)
-
-            #We now find noun phrases and clauses to use in our poems
+            # We now find noun phrases and clauses to use in our poems
             for subtree in result.subtrees():
                 if subtree.label() == 'NP':
                     line = ""
