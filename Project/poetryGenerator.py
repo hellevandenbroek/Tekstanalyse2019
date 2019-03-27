@@ -10,9 +10,10 @@ class PoetryGenerator:
         poems. This makes use of the files from
         the Corpus directory.
     """
-    def __init__(self, username):
+    def __init__(self, username, mood):
         self.foo = "bar"
         self.username = username
+        self.mood = mood
         self.corpus = []
         self.fetch_tweets()
         self.np = []
@@ -22,7 +23,7 @@ class PoetryGenerator:
         pathlib.Path('Poems').mkdir(exist_ok=True)
 
     def fetch_tweets(self):
-        print('Now generating a poem based on the tweets from {}......'.format(self.username))
+        print('Now generating a {} poem based on the tweets from {}......'.format(self.mood, self.username))
         corpus = []
         file = open("./Corpus/{}.txt".format(self.username),"r", encoding="utf-8")
         for line in file:
@@ -31,10 +32,6 @@ class PoetryGenerator:
         self.make_chunks()
 
     def make_chunks(self):
-        #TODO: denne tar inn enten "sad" eller "happy"
-
-        mood = 'sad'
-
         document = self.corpus
         grammar = r"""
             NP: {<DT><JJ><NN>} # Noun phrase
@@ -80,10 +77,10 @@ class PoetryGenerator:
                         line += word[0]
                         line += " "
                     wrbs.append(line)
-        if mood == 'happy':
+        if self.mood == 'happy':
             self.np = nps_happy
             self.clause = clauses_happy
-        if mood == 'sad':
+        if self.mood == 'sad':
             self.np = nps_sad
             self.clause = clauses_sad
         self.wrb = wrbs
