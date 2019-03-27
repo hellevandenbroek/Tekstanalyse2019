@@ -19,27 +19,24 @@ class CorpusGenerator:
         self.add_tweets()
 
     def add_tweets(self):
-        string = self.api.user_timeline(screen_name=self.username, tweet_mode=self.tweet_mode, count=1000)
+        string = self.api.user_timeline(screen_name=self.username, tweet_mode=self.tweet_mode, count=2000)
         self.tweets = [tweet.full_text for tweet in string]
         self.remove_unnecessary()
 
     def _is_sufficient_data(self):
-        return len(self.tweets) > 160
+        return len(self.tweets) > 150
 
     def save_to_file(self):
         if len(self.tweets) == 0:
             return
-
         if not self._is_sufficient_data():
             print("Not enough data to save. Please choose another account.")
             return
-
         try:
             file = open("Corpus/{}.txt".format(self.username.lower()), "wb")
             top_tweets = self.tweets
             for tweet in top_tweets:
-                if len(tweet) > 1:
-                    file.write(tweet.encode() + '\n'.encode())
+                file.write(tweet.encode() + '\n'.encode())
         finally:
             file.close()
             print("Saved regular {} to corpus".format(self.username))
@@ -60,8 +57,3 @@ class CorpusGenerator:
             return True
         else:
             return False
-
-
-if __name__ == '__main__':
-    print("Started CorpusGenerator")
-    corpus = CorpusGenerator()

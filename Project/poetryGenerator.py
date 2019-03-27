@@ -1,5 +1,4 @@
 import nltk
-
 import random
 import pathlib
 
@@ -19,9 +18,7 @@ class PoetryGenerator:
         self.clause = []
         self.wrb = []
         self.poem = ""
-
         pathlib.Path('Poems').mkdir(exist_ok=True)
-
 
     def fetch_tweets(self):
         print('Now generating a poem based on the tweets from {}......'.format(self.username))
@@ -31,7 +28,6 @@ class PoetryGenerator:
             corpus.append(line)
         self.corpus = corpus
         self.make_chunks()
-
 
     def make_chunks(self):
         document = self.corpus
@@ -45,7 +41,6 @@ class PoetryGenerator:
         nps = []
         clauses = []
         wrbs = []
-
         for sentence in document:
             sent = nltk.word_tokenize(sentence)
             sent = nltk.pos_tag(sent)
@@ -59,33 +54,27 @@ class PoetryGenerator:
                         line += word[0]
                         line += " "
                     nps.append(line)
-
                 elif subtree.label() == 'CLAUSE':
                     line = ""
                     for word in subtree.leaves():
                         line += word[0]
                         line += " "
                     clauses.append(line)
-
                 elif subtree.label() == 'WRB':
                     line = ""
                     for word in subtree.leaves():
                         line += word[0]
                         line += " "
                     wrbs.append(line)
-
         self.np = nps
         self.clause = clauses
         self.wrb = wrbs
 
     def print_poem(self):
-        print(" ")
-        print("Based of: ")
-        print(self.username)
-        print(" ")
-        lenNP = len(self.np)
-        lenClause = len(self.clause)
-        lenWrb = len(self.wrb)
+        print("\n Based of: \n", self.username, "\n")
+        lenNP = len(self.np)-1
+        lenClause = len(self.clause)-1
+        lenWrb = len(self.wrb)-1
 
         first_line = self.np[random.randint(0, lenNP)]
         second_line = self.clause[random.randint(0, lenClause)]
@@ -93,22 +82,20 @@ class PoetryGenerator:
         fourth_line = self.np[random.randint(0, lenNP)]
 
         self.poem = "{}\n{}\n{}\n{}".format(first_line, second_line, third_line, fourth_line)
-        print(self.poem)
-        print(" ")
+        print(self.poem, "\n")
 
     def save_poem(self):
-        # Save to file
         if self.poem == "":
             return
         try:
             file = open("Poems/{}.txt".format(self.username.lower()), "ab")
-            file.write(self.poem.encode() + '\n'.encode())
+            file.write(self.poem.encode() + '\n\n'.encode())
         finally:
             file.close()
             print("Added poem to collection of {} ".format(self.username))
 
 
-# comment about what each part of speech is:
+# Part of speech cheat note:
 """ CC   - conjunction: or, but, and, either
     CD   - number: one, two, three
     DT   - determiner: a, an, the, both, all, these, any, some
