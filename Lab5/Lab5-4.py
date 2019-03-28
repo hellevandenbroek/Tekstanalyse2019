@@ -13,7 +13,7 @@ v = """
     cyril => c
     irene => i
     one person => 1
-    like => {(a, s), (s, j), -(c, i)}
+    like => {(a, s), (s, j), (c, a), (c, j), (c, d), (c, n), (c, p), (c, s), (c, b), (c, m), (c, c), (c, i), (c, 1) }
     love => {(a, d), (d, a), (m, p), (b, s)}
     smile => {(n, p)}
     cough_sneeze => {s}
@@ -71,20 +71,19 @@ ex_f = m.evaluate('exists z.(love(x, z)) & -love(x, x)', gf)
 print('(f): ', ex_f)
 
 # g
-gg = assign_g([])
+gg = assign_g([('x', 'm'), ('y', 'p')])  # matthew and pat
 # Nobody other than Matthew loves Pat.
-ex_g = m.evaluate('', gg)
+ex_g = m.evaluate('all z.(z != x -> -love(z, y))', gg)
 print('(g): ', ex_g)
 
 # h
-gh = assign_g([])  # cyril and irene
+gh = assign_g([('x', 'c'), ('y', 'i')])  # cyril and irene
 # Cyril likes everyone except for Irene.
-ex_h = m.evaluate('', gh)
+ex_h = m.evaluate('all z.(z != y -> like(x, z))', gh)
 print('(h): ', ex_h)
 
 # i
-gi = assign_g([])  # one person
+gi = assign_g([('x', '1')])  # one person
 # Exactly one person is asleep.
-ex_i = m.evaluate('', gi)
+ex_i = m.evaluate('exists x.(sleep(x) -> -all y.( y != x -> sleep(y)))', gi)
 print('(i): ', ex_i)
-
