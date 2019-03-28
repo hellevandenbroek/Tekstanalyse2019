@@ -16,8 +16,10 @@ f = read_expr('(P -> -R) <-> (Q -> -S)')
 
 tasks = [a, b, c, d, e, f]
 
-for task in tasks:
 
+
+
+for task in tasks:
     print(task)
 
 
