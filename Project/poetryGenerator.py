@@ -43,16 +43,23 @@ class PoetryGenerator(BasePoetryGenerator):
         poems. This makes use of the files from
         the Corpus directory.
     """
+
     def __init__(self, username, mood):
         super(PoetryGenerator, self).__init__(username)
         self.corpus = []
         self.np = []
         self.clause = []
         self.wrb = []
-        self.mood = mood
+        self.mood = self.determine_input_mood(mood)
         self.poem = ""
 
         pathlib.Path('Poems').mkdir(exist_ok=True)
+
+    def determine_input_mood(self, word):
+        if word.startswith("h"):
+            return "happy"
+        return "sad"
+
 
     def make_chunks(self):
         document = self.corpus
