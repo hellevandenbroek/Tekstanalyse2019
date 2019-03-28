@@ -3,8 +3,13 @@ import random
 import pathlib
 from textblob import TextBlob
 
-
 class BasePoetryGenerator:
+    """
+    Simple Base class for Poetry Generator. Might be useful
+    if different PoetryGenerators are made and all require basic
+    functions.
+    """
+
     def __init__(self, username):
         self.foo = "bar"
         self.username = username
@@ -41,7 +46,7 @@ class PoetryGenerator(BasePoetryGenerator):
     """
         This class contains the creation of the
         poems. This makes use of the files from
-        the Corpus directory.
+        the Corpus directory. Builds on BasePoetryGenerator
     """
 
     def __init__(self, username, mood):
