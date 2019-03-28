@@ -5,10 +5,9 @@ from textblob import TextBlob
 
 
 class BasePoetryGenerator:
-    def __init__(self, username, mood):
+    def __init__(self, username):
         self.foo = "bar"
         self.username = username
-        self.mood = mood
         self.corpus = []
         self.np = []
         self.clause = []
@@ -30,7 +29,7 @@ class BasePoetryGenerator:
             print("Added poem to collection of {} ".format(self.username))
 
     def fetch_tweets(self):
-        print('Now generating a {} poem based on the tweets from {}......'.format(self.mood, self.username))
+        print('Now generating a poem based on the tweets from {}......'.format(self.username))
         corpus = []
         file = open("./Corpus/{}.txt".format(self.username),"r", encoding="utf-8")
         for line in file:
@@ -45,11 +44,12 @@ class PoetryGenerator(BasePoetryGenerator):
         the Corpus directory.
     """
     def __init__(self, username, mood):
-        super(PoetryGenerator, self).__init__(username, mood)
+        super(PoetryGenerator, self).__init__(username)
         self.corpus = []
         self.np = []
         self.clause = []
         self.wrb = []
+        self.mood = mood
         self.poem = ""
 
         pathlib.Path('Poems').mkdir(exist_ok=True)
