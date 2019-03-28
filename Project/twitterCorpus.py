@@ -36,7 +36,8 @@ class CorpusGenerator:
             file = open("Corpus/{}.txt".format(self.username.lower()), "wb")
             top_tweets = self.tweets
             for tweet in top_tweets:
-                file.write(tweet.encode() + '\n'.encode())
+                if len(tweet) > 1:
+                    file.write(tweet.encode() + '\n'.encode())
         finally:
             file.close()
             print("Saved regular {} to corpus".format(self.username))

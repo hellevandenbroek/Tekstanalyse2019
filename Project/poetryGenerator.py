@@ -1,6 +1,7 @@
 import nltk
 import random
 import pathlib
+from textblob import TextBlob
 
 
 class PoetryGenerator:
@@ -9,9 +10,10 @@ class PoetryGenerator:
         poems. This makes use of the files from
         the Corpus directory.
     """
-    def __init__(self, username):
+    def __init__(self, username, mood):
         self.foo = "bar"
         self.username = username
+        self.mood = mood
         self.corpus = []
         self.np = []
         self.clause = []
@@ -21,7 +23,7 @@ class PoetryGenerator:
         pathlib.Path('Poems').mkdir(exist_ok=True)
 
     def fetch_tweets(self):
-        print('Now generating a poem based on the tweets from {}......'.format(self.username))
+        print('Now generating a {} poem based on the tweets from {}......'.format(self.mood, self.username))
         corpus = []
         file = open("./Corpus/{}.txt".format(self.username),"r", encoding="utf-8")
         for line in file:
@@ -37,9 +39,12 @@ class PoetryGenerator:
             WRB: {<IN>}
         """
         cp = nltk.RegexpParser(grammar)
-        nps = []
-        clauses = []
+        nps_happy = []
+        clauses_happy = []
         wrbs = []
+        nps_sad = []
+        clauses_sad = []
+
         for sentence in document:
             sent = nltk.word_tokenize(sentence)
             sent = nltk.pos_tag(sent)
@@ -51,25 +56,44 @@ class PoetryGenerator:
                     for word in subtree.leaves():
                         line += word[0]
                         line += " "
-                    nps.append(line)
+                    if self.check_semantic(line):
+                        nps_happy.append(line)
+                    else:
+                        nps_sad.append(line)
                 elif subtree.label() == 'CLAUSE':
                     line = ""
                     for word in subtree.leaves():
                         line += word[0]
                         line += " "
-                    clauses.append(line)
+                    if self.check_semantic(line):
+                        clauses_happy.append(line)
+                    else:
+                        clauses_sad.append(line)
                 elif subtree.label() == 'WRB':
                     line = ""
                     for word in subtree.leaves():
                         line += word[0]
                         line += " "
                     wrbs.append(line)
-        self.np = nps
-        self.clause = clauses
+        if self.mood == 'happy':
+            self.np = nps_happy
+            self.clause = clauses_happy
+        if self.mood == 'sad':
+            self.np = nps_sad
+            self.clause = clauses_sad
         self.wrb = wrbs
 
-    def print_poem(self):
-        print("\n Based of: \n", self.username, "\n")
+    def check_semantic(self, sent):
+        analysis = TextBlob(sent)
+        if analysis.sentiment[0] > 0:
+            return True
+        elif analysis.sentiment[0] < 0:
+            return False
+        #Option for neutral
+        else:
+            return False
+
+    def create_poem(self):
         lenNP = len(self.np)-1
         lenClause = len(self.clause)-1
         lenWrb = len(self.wrb)-1
@@ -78,8 +102,11 @@ class PoetryGenerator:
         second_line = self.clause[random.randint(0, lenClause)]
         third_line = self.wrb[random.randint(0, lenWrb)] + self.np[random.randint(0, lenNP)]
         fourth_line = self.np[random.randint(0, lenNP)]
-
         self.poem = "{}\n{}\n{}\n{}".format(first_line, second_line, third_line, fourth_line)
+        self.print_poem()
+
+    def print_poem(self):
+        print("\n Based of: \n", self.username, "\n")
         print(self.poem, "\n")
 
     def save_poem(self):
