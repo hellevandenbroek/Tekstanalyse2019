@@ -60,6 +60,7 @@ def handle_poem_generation():
     mood = input(">")
 
     pg = PoetryGenerator(user, mood)
+    pg.fetch_tweets()
     pg.make_chunks()
     pg.create_poem()
 
