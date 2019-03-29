@@ -141,6 +141,10 @@ class PoetryGenerator(BasePoetryGenerator):
         self.poem = "{}\n{}\n{}\n{}".format(first_line, second_line, third_line, fourth_line)
         self.print_poem()
 
+    def main(self):
+        self.fetch_tweets()
+        self.make_chunks()
+        self.create_poem()
 
 # Part of speech cheat note:
 """ CC   - conjunction: or, but, and, either
