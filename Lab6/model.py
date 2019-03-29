@@ -120,6 +120,4 @@ class ChatBotModel:
         self._inference()
         self._create_loss()
         self._creat_optimizer()
-
-
-self._create_summary()
+        self._create_summary()
