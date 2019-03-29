@@ -3,32 +3,68 @@ import random
 import pathlib
 from textblob import TextBlob
 
+class BasePoetryGenerator:
+    """
+    Simple Base class for Poetry Generator. Might be useful
+    if different PoetryGenerators are made and all require basic
+    functions.
+    """
 
-class PoetryGenerator:
-    """
-        This class contains the creation of the
-        poems. This makes use of the files from
-        the Corpus directory.
-    """
-    def __init__(self, username, mood):
+    def __init__(self, username):
         self.foo = "bar"
         self.username = username
-        self.mood = mood
         self.corpus = []
         self.np = []
         self.clause = []
         self.wrb = []
         self.poem = ""
 
-        pathlib.Path('Poems').mkdir(exist_ok=True)
+    def print_poem(self):
+        print("\n Based of: \n", self.username, "\n")
+        print(self.poem, "\n")
+
+    def save_poem(self):
+        if self.poem == "":
+            return
+        try:
+            file = open("Poems/{}.txt".format(self.username.lower()), "ab")
+            file.write(self.poem.encode() + '\n\n'.encode())
+        finally:
+            file.close()
+            print("Added poem to collection of {} ".format(self.username))
 
     def fetch_tweets(self):
-        print('Now generating a {} poem based on the tweets from {}......'.format(self.mood, self.username))
+        print('Now generating a poem based on the tweets from {}......'.format(self.username))
         corpus = []
         file = open("./Corpus/{}.txt".format(self.username),"r", encoding="utf-8")
         for line in file:
             corpus.append(line)
         self.corpus = corpus
+
+
+class PoetryGenerator(BasePoetryGenerator):
+    """
+        This class contains the creation of the
+        poems. This makes use of the files from
+        the Corpus directory. Builds on BasePoetryGenerator
+    """
+
+    def __init__(self, username, mood):
+        super(PoetryGenerator, self).__init__(username)
+        self.corpus = []
+        self.np = []
+        self.clause = []
+        self.wrb = []
+        self.mood = self.determine_input_mood(mood)
+        self.poem = ""
+
+        pathlib.Path('Poems').mkdir(exist_ok=True)
+
+    def determine_input_mood(self, word):
+        if word.startswith("h"):
+            return "happy"
+        return "sad"
+
 
     def make_chunks(self):
         document = self.corpus
@@ -104,20 +140,6 @@ class PoetryGenerator:
         fourth_line = self.np[random.randint(0, lenNP)]
         self.poem = "{}\n{}\n{}\n{}".format(first_line, second_line, third_line, fourth_line)
         self.print_poem()
-
-    def print_poem(self):
-        print("\n Based of: \n", self.username, "\n")
-        print(self.poem, "\n")
-
-    def save_poem(self):
-        if self.poem == "":
-            return
-        try:
-            file = open("Poems/{}.txt".format(self.username.lower()), "ab")
-            file.write(self.poem.encode() + '\n\n'.encode())
-        finally:
-            file.close()
-            print("Added poem to collection of {} ".format(self.username))
 
 
 # Part of speech cheat note:

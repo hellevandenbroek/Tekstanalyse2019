@@ -12,6 +12,7 @@ options = ["add account",
             "list corpus",
            "exit application"]
 
+
 def print_options():
     for option in options:
         capitalized = option.split()
@@ -53,15 +54,19 @@ def handle_corpus():
 
 
 def handle_poem_generation():
-    user = input("From which of your corpus would you like to generate a poem?: ")
-    mood = input("Would you like the poem to be 'happy' or 'sad'?: ")
-    hello = PoetryGenerator(user, mood)
-    hello.make_chunks()
-    hello.create_poem()
+    print("From which of your corpus would you like to generate a poem?: ")
+    user = input(">")
+    print("Would you like the poem to be 'happy' or 'sad'?: ")
+    mood = input(">")
+
+    pg = PoetryGenerator(user, mood)
+    pg.make_chunks()
+    pg.create_poem()
+
     print("Want to save this poem to disk? y/n")
     save = input(">")
     if save.startswith("y"):
-        hello.save_poem()
+        pg.save_poem()
 
 
 while True:
