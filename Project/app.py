@@ -4,7 +4,7 @@
 # TODO: poetry generation
 
 import sys
-from twitterCorpus import CorpusGenerator
+from createCorpus import CorpusGenerator
 from poetryGenerator import PoetryGenerator
 import os
 options = ["add account",

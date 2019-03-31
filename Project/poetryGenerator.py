@@ -61,7 +61,7 @@ class PoetryGenerator(BasePoetryGenerator):
         pathlib.Path('Poems').mkdir(exist_ok=True)
 
     def determine_input_mood(self, word):
-        if word.startswith("h"):
+        if word.startswith("h" or 'H'):
             return "happy"
         return "sad"
 
@@ -120,10 +120,10 @@ class PoetryGenerator(BasePoetryGenerator):
         self.wrb = wrbs
 
     def check_semantic(self, sent):
-        analysis = TextBlob(sent)
-        if analysis.sentiment[0] > 0:
+        sentiment = TextBlob(sent).sentiment.polarity
+        if sentiment > 0:
             return True
-        elif analysis.sentiment[0] < 0:
+        elif sentiment < 0:
             return False
         #Option for neutral
         else:
