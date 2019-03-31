@@ -2,7 +2,7 @@ import tweepy
 import pathlib
 
 
-class CorpusGenerator:
+class CreateCorpus:
     def __init__(self, twitter_user):
         consumer_key = "LqZEmCpMMaHS6fgxr4J0OVawP"
         consumer_secret = "HeTmwvVd0NDFrdvz9j4uNNhNFYhA7rrBKMSE6MxkS5DnVx4VKH"
@@ -12,6 +12,8 @@ class CorpusGenerator:
         auth.set_access_token(access_key, access_secret)
         pathlib.Path('Corpus').mkdir(exist_ok=True)
 
+        self.count = 2000
+        self.minimum_tweets = 150
         self.api = tweepy.API(auth)
         self.tweet_mode = 'extended'
         self.username = twitter_user
@@ -19,12 +21,12 @@ class CorpusGenerator:
         self.add_tweets()
 
     def add_tweets(self):
-        string = self.api.user_timeline(screen_name=self.username, tweet_mode=self.tweet_mode, count=2000)
+        string = self.api.user_timeline(screen_name=self.username, tweet_mode=self.tweet_mode, count=self.count)
         self.tweets = [tweet.full_text for tweet in string]
         self.remove_unnecessary()
 
     def _is_sufficient_data(self):
-        return len(self.tweets) > 150
+        return len(self.tweets) > self.minimum_tweets
 
     def save_to_file(self):
         if len(self.tweets) == 0:
