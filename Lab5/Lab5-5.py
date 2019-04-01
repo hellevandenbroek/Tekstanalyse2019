@@ -66,6 +66,19 @@ def save_sentimented_tweet(tweet, sent_value):
     finally:
         f.close()
 
+
+def read_sentimented_tweets():
+    f = open("sentimentedTweets.txt", "r", encoding="utf-8")
+
+    # {"tweet": The Republican Party will become “The Party of Healthcare!”, "sentiment": 1}
+
+    tweets = []
+    for line in f.readlines():
+        tweet = json.loads(line)
+        tweets.append(tweet)
+    return tweets
+
+
 def create_model():
     model = Sequential()
     model.add(Dense(500, activation='relu', input_shape=(10000,)))
@@ -85,9 +98,9 @@ def train_model(path, model, cv):
     fitting the model on the full data and
     Returns the scores.
     """
+    corpus = read_sentimented_tweets()
 
-    corpus = allTweets
-    X = list(corpus.reviews())
+    X = list(corpus.sent_value)
     y = np.digitize(list(corpus.scores()), [0.0, 3.0, 5.1])
     scores = cross_val_score(model, X, y, cv=cv, scoring='accuracy')
     # Fit the model on entire data set
