@@ -5,7 +5,6 @@ from nltk.chunk import tree2conlltags
 
 #Sources: https://towardsdatascience.com/named-entity-recognition-with-nltk-and-spacy-8c4a7d88e7da
 
-
 def readFromFile():
     f = open("SpaceX.txt", "r", encoding="utf-8")
     lines = ""
