@@ -1,5 +1,6 @@
 import tweepy
 import pathlib
+import os
 
 
 class CreateCorpus:
@@ -18,7 +19,11 @@ class CreateCorpus:
         self.tweet_mode = 'extended'
         self.username = twitter_user
         self.tweets = []
-        self.add_tweets()
+
+        if self.username == "update_corpus":
+            self.update_corpus()
+        else:
+            self.add_tweets()
 
     def add_tweets(self):
         string = self.api.user_timeline(screen_name=self.username, tweet_mode=self.tweet_mode, count=self.count)
@@ -60,3 +65,16 @@ class CreateCorpus:
             return True
         else:
             return False
+
+    def update_corpus(self):
+        files = os.listdir("./Corpus")
+        shaved = [x.strip(".txt") for x in files]
+        for account in shaved:
+            self.username = account
+            self.add_tweets()
+            self.save_to_file()
+        print("Updated tweets for all stored accounts")
+
+    def main(self):
+        self.save_to_file()
+        print("Saved {}'s tweets to file in folder Corpus.".format(self.username))

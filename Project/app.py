@@ -9,7 +9,8 @@ from poetryGenerator import PoetryGenerator
 import os
 options = ["add account",
            "generate poem",
-            "list corpus",
+            "list stored",
+           "update corpus",
            "exit application"]
 
 
@@ -49,8 +50,12 @@ def print_accounts(accounts):
 def handle_corpus():
     user = input("Type in a twitter-account you want to generate poetry from: ")
     cp = CreateCorpus(user)
-    print("First tweet:", cp.tweets[0])
-    cp.save_to_file()
+    cp.main()
+
+
+def handle_update():
+    invalid_username = "update_corpus"
+    cp = CreateCorpus(invalid_username)
 
 
 def handle_poem_generation():
@@ -61,12 +66,6 @@ def handle_poem_generation():
 
     pg = PoetryGenerator(user, mood)
     pg.main()
-
-
-    print("Want to save this poem to disk? y/n")
-    save = input(">")
-    if save.startswith("y"):
-        pg.save_poem()
 
 
 while True:
@@ -83,5 +82,7 @@ while True:
         if chosen_choice == 2:
             handle_list()
         if chosen_choice == 3:
+            handle_update()
+        if chosen_choice == 4:
             print("Closed application")
             sys.exit()

@@ -146,6 +146,11 @@ class PoetryGenerator(BasePoetryGenerator):
         self.make_chunks()
         self.create_poem()
 
+        print("Want to save this poem to disk? y/n")
+        save = input(">")
+        if save.startswith("y"):
+            self.save_poem()
+
 # Part of speech cheat note:
 """ CC   - conjunction: or, but, and, either
     CD   - number: one, two, three
