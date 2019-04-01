@@ -4,7 +4,7 @@
 # TODO: poetry generation
 
 import sys
-from twitterCorpus import CorpusGenerator
+from createCorpus import CreateCorpus
 from poetryGenerator import PoetryGenerator
 import os
 options = ["add account",
@@ -48,7 +48,7 @@ def print_accounts(accounts):
 
 def handle_corpus():
     user = input("Type in a twitter-account you want to generate poetry from: ")
-    cp = CorpusGenerator(user)
+    cp = CreateCorpus(user)
     print("First tweet:", cp.tweets[0])
     cp.save_to_file()
 
@@ -60,8 +60,8 @@ def handle_poem_generation():
     mood = input(">")
 
     pg = PoetryGenerator(user, mood)
-    pg.make_chunks()
-    pg.create_poem()
+    pg.main()
+
 
     print("Want to save this poem to disk? y/n")
     save = input(">")
