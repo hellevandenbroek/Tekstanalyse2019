@@ -61,7 +61,7 @@ class PoetryGenerator(BasePoetryGenerator):
         pathlib.Path('Poems').mkdir(exist_ok=True)
 
     def determine_input_mood(self, word):
-        if word.startswith("h"):
+        if word.startswith("h" or 'H'):
             return "happy"
         return "sad"
 
@@ -120,10 +120,10 @@ class PoetryGenerator(BasePoetryGenerator):
         self.wrb = wrbs
 
     def check_semantic(self, sent):
-        analysis = TextBlob(sent)
-        if analysis.sentiment[0] > 0:
+        sentiment = TextBlob(sent).sentiment.polarity
+        if sentiment > 0:
             return True
-        elif analysis.sentiment[0] < 0:
+        elif sentiment < 0:
             return False
         #Option for neutral
         else:
@@ -141,6 +141,10 @@ class PoetryGenerator(BasePoetryGenerator):
         self.poem = "{}\n{}\n{}\n{}".format(first_line, second_line, third_line, fourth_line)
         self.print_poem()
 
+    def main(self):
+        self.fetch_tweets()
+        self.make_chunks()
+        self.create_poem()
 
 # Part of speech cheat note:
 """ CC   - conjunction: or, but, and, either
