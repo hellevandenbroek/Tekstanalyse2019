@@ -15,7 +15,9 @@ from keras.models import Sequential
 from keras.wrappers.scikit_learn import KerasClassifier
 from keras.layers import Dense, Dropout, Activation, LSTM
 from sklearn.feature_extraction.text import TfidfVectorizer
+import json
 from transformer import TextNormalizer, GensimDoc2Vectorizer
+
 
 # Source: https://keras.io/getting-started/sequential-model-guide/
 # Source: https://medium.freecodecamp.org/how-to-build-a-twitter-sentiments-analyzer-in-python-using-textblob-948e1e8aae14
@@ -32,7 +34,8 @@ def read_from_file():
 
 def analyse_sentiments(tweets):
     for tweet in tweets:
-        check_sentiment(tweet)
+        sentiment = check_sentiment(tweet)
+        save_sentimented_tweet(tweet, sentiment)
 
 
 def check_sentiment(tweet):
@@ -47,6 +50,21 @@ def check_sentiment(tweet):
     #These are neutral
     else:
         return 0
+
+
+def save_sentimented_tweet(tweet, sent_value):
+    """
+    These are json objects used in the model.
+    :param tweet:
+    :param sent_value:
+    """
+    try:
+        f = open("sentimentedTweets.txt", "a", encoding="utf-8")
+        data = {"tweet": tweet, "sentimental_value": sent_value}
+        json_data = json.dumps(data)
+        f.write(json_data)
+    finally:
+        f.close()
 
 def create_model():
     model = Sequential()
