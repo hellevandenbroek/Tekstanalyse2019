@@ -1,0 +1,44 @@
+HUMAN ++++ hi
+BOT ++++ ' s not .
+HUMAN ++++ hello
+BOT ++++ .
+HUMAN ++++ what
+BOT ++++ ' s not .
+HUMAN ++++ hello
+BOT ++++ .
+=============================================
+HUMAN ++++ hi
+BOT ++++ .
+HUMAN ++++ what
+BOT ++++ ?
+HUMAN ++++ hello
+BOT ++++ .
+HUMAN ++++ how are you
+BOT ++++ , i ' m not a good of the little <unk> .
+HUMAN ++++ are you ok
+BOT ++++ ?
+HUMAN ++++ ?
+BOT ++++ ' s the good , i ' m not a good of the little <unk> .
+HUMAN ++++ :) 
+BOT ++++ .
+HUMAN ++++ hello
+BOT ++++ .
+HUMAN ++++ how are you doing
+BOT ++++ , i ' m not a good of the little <unk> , i ' m not a good of
+HUMAN ++++ ?
+BOT ++++ ' s the good , i ' m not a good of the little <unk> .
+HUMAN ++++ is everything alright?
+BOT ++++ .
+HUMAN ++++ can you jump
+BOT ++++ ?
+HUMAN ++++ hi bot!
+BOT ++++ .
+HUMAN ++++ .
+BOT ++++ .
+HUMAN ++++ How are you doing bot?
+BOT ++++ .
+HUMAN ++++ love you
+BOT ++++ .
+HUMAN ++++ why are you this stupid?
+BOT ++++ .
+=============================================
