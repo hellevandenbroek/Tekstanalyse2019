@@ -1,15 +1,10 @@
-# TODO: make corpus great again. Get 200 tweets from input user
-# TODO: treat corpus
-# TODO: Ngrams, få dette til å bli riktig
-# TODO: poetry generation
-
 import sys
 from createCorpus import CreateCorpus
 from poetryGenerator import PoetryGenerator
 import os
 options = ["add account",
            "generate poem",
-            "list stored",
+            "show stored",
            "update corpus",
            "exit application"]
 
