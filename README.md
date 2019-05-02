@@ -38,7 +38,7 @@ correct lines resulting in proper looking quatrains, these results are unable
 to deliver the meaning and depth often found in human written poetry. Pro-
 gramming this might be more difficult, as computers lack the same emotions
 and thoughts as human do (as of yet).
-Contents
+## Contents
 
     1 Introduction
         1.1 Motivation
