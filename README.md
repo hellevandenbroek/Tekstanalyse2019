@@ -1,3 +1,4 @@
+###### Note: Converted from PDF
 # POETRY GENERATION BASED ON TWEETS
 ## GENERATING POEMS BASED ON TWEETS WITH THE USE OF THE NLTK LIBRARY FOR PYTHON
 ### WRITTENBY
@@ -5,7 +6,6 @@
 #### NTNU
 #### APRIL 2019
 #### TDT 4310
-
 ## Abstract
 This report documents the project work for the course Intelligent Tekst-
 analyse og Språkforståelse (TDT4310) at the Norwegian University of Sci-
