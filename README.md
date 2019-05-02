@@ -1,16 +1,12 @@
-POETRY GENERATION
-BASED ON
-TWEETS
-GENERATING POEMS BASED ON TWEETS WITH THE USE OF THENLTK
-LIBRARY FORPYTHON
-WRITTENBY
-HELLE VAN DENBROEK
-TRULSBERGLUND
-NTNU
-APRIL 2019
-TDT 4310
+# POETRY GENERATION BASED ON TWEETS
+## GENERATING POEMS BASED ON TWEETS WITH THE USE OF THE NLTK LIBRARY FOR PYTHON
+### WRITTENBY
+#### HELLE VAN DEN BROEK & TRULS BERGLUND
+#### NTNU
+#### APRIL 2019
+#### TDT 4310
 
-Abstract
+## Abstract
 This report documents the project work for the course Intelligent Tekst-
 analyse og Språkforståelse (TDT4310) at the Norwegian University of Sci-
 ence and Technology. The project is conducted by Helle van den Broek and
@@ -77,7 +73,7 @@ Contents
     8 Sources
     9 Libraries
 
-1 Introduction
+## 1 Introduction
 1.1 Motivation
 
 The motivation for this project was to generate poems using corpora with data
@@ -102,7 +98,7 @@ from a chosen Twitter account. The sentences should be completely based on the
 tweets from certain Twitter accounts, and it should be possible to generate both
 sad and happy poems. Hopefully the poems will in some way be related to the
 twitter accounts, and reflect some of the typical topics for the given account.
-2 Methods
+## 2 Methods
 
 To reach this goal, two main methods have been used: chunking and sentiment
 analysis.
@@ -137,7 +133,7 @@ or neutral. Checking sentiments on only the smaller chunks of tweets, often
 containing just a few words is much more accurate than it would be to analyze
 entire tweets. The bigger the data set is, the more course the classification is,
 and will result in a less accurate result.
-3 Data
+## 3 Data
 3.1 Creating a corpus
 
 The data used in this project is fetched Twitter data from different Twitter ac-
@@ -156,7 +152,7 @@ Instagram comments are coding in emojis
 Anyone who bought FSD will get it
 Even connectivity at my house in Silicon Valley sucks!
 
-4 Implementation
+## 4 Implementation
 4.1 User Interface (UI)
 
 In order to make the development and observation processes more fluent, an
@@ -271,7 +267,7 @@ changeable if one would like to experiment with different combinations.
 Finally the user gets the option to save tweets if they like what is generated. In
 that case, another .txt file gets created and the saved tweets are appended to this
 file.
-5 Results
+## 5 Results
 
 Each poem presented here consists of four lines. This is also known as a quatrain.
 The results have been categorized into happy and sad poems, as was part of the
@@ -386,7 +382,7 @@ without clean drinking water
 in a wonderful time
 a wonderful night
 
-6 Evaluation / Discussion
+## 6 Evaluation / Discussion
 
 Several types of accounts were used to get results. These types include actors,
 artists, politicians and organizations. This was done in order to get a wide scope
@@ -441,7 +437,7 @@ menting the features mentioned above. This will not be done in this project, but
 is an interesting discussion for potential future works, as the opportunities are
 nearly endless since the "structure" of poetry is very fluent and exist in countless
 forms.
-7 Conclusion
+## 7 Conclusion
 
 It is fair to conclude that this project has been a success in the sense that the
 project goals have been met. The outcome of the tweets fetching combined with
@@ -458,14 +454,14 @@ the purpose and deeper meaning a human-written poem might contain, they def-
 initely resemble poems written by humans in the past. And even though the
 computer generated lines are put together randomly, without taking context to
 each other into account, in many cases they actually make sense.
-8 Sources
+## 8 Sources
 
     http://www.tweepy.org/
     https://textblob.readthedocs.io/en/dev/
     https://en.oxforddictionaries.com/definition/poem
     https://www.nltk.org/book/ch07.html, Figure 1
 
-9 Libraries
+## 9 Libraries
 
     Tweepy, http://www.tweepy.org/
     NLTK, http://www.nltk.org/
