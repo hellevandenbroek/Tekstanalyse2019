@@ -5,10 +5,10 @@ import os
 
 class CreateCorpus:
     def __init__(self, twitter_user):
-        consumer_key = "LqZEmCpMMaHS6fgxr4J0OVawP"
-        consumer_secret = "HeTmwvVd0NDFrdvz9j4uNNhNFYhA7rrBKMSE6MxkS5DnVx4VKH"
-        access_key = "788662964-bBmuNBWLuK6opUT3HyJVtVw5y9WfOHLe1CtB45LT"
-        access_secret = "yhqFB8Izpfb6w3pUBxPBUKj62pY654F5cUhTbyCYYRAea"
+        consumer_key = ""
+        consumer_secret = ""
+        access_key = ""
+        access_secret = ""
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_key, access_secret)
         pathlib.Path('Corpus').mkdir(exist_ok=True)
